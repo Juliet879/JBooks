@@ -29,9 +29,9 @@ public class MainActivity extends AppCompatActivity {
         mGetStartedButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String course = bookEditText.getText().toString();
+                String book = bookEditText.getText().toString();
                 Intent intent = new Intent(MainActivity.this, BookActivity.class);
-                intent.putExtra("course", course);
+                intent.putExtra("book", book);
                 startActivity(intent);
 
             }
