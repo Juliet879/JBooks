@@ -4,6 +4,8 @@ package com.moringaschool.jbooks;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 public class Item {
 
     @SerializedName("kind")
@@ -20,7 +22,10 @@ public class Item {
     private String selfLink;
     @SerializedName("volumeInfo")
     @Expose
-    private VolumeInfo volumeInfo;
+    private List<VolumeInfo> volumeInfo = null;
+//    @SerializedName("categories")
+//    @Expose
+//    private List<Category> categories = null;
     @SerializedName("saleInfo")
     @Expose
     private SaleInfo saleInfo;
@@ -49,7 +54,7 @@ public class Item {
      * @param accessInfo
      * @param selfLink
      */
-    public Item(String kind, String id, String etag, String selfLink, VolumeInfo volumeInfo, SaleInfo saleInfo, AccessInfo accessInfo, SearchInfo searchInfo) {
+    public Item(String kind, String id, String etag, String selfLink, List<VolumeInfo> volumeInfo, SaleInfo saleInfo, AccessInfo accessInfo, SearchInfo searchInfo) {
         super();
         this.kind = kind;
         this.id = id;
@@ -93,11 +98,11 @@ public class Item {
         this.selfLink = selfLink;
     }
 
-    public VolumeInfo getVolumeInfo() {
+    public List<VolumeInfo> getVolumeInfos() {
         return volumeInfo;
     }
 
-    public void setVolumeInfo(VolumeInfo volumeInfo) {
+    public void setVolumeInfo(List<VolumeInfo> volumeInfo) {
         this.volumeInfo = volumeInfo;
     }
 
@@ -124,5 +129,13 @@ public class Item {
     public void setSearchInfo(SearchInfo searchInfo) {
         this.searchInfo = searchInfo;
     }
+
+//    public List<VolumeInfo> getVolumeInfo() {
+//        return volumeInfo;
+//    }
+//
+//    public void setVolumeInfo(List<VolumeInfo> volumeInfos) {
+//        this.volumeInfo = volumeInfo;
+//    }
 
 }

@@ -61,4 +61,14 @@ public class GoogleBookSearchResponse {
         this.items = items;
     }
 
+//    public List<VolumeInfo> getVolumeinfos() {
+//    }
+//    public List<Business> getBusinesses() {
+//        return businesses;
+//    }
+//
+//    public void setBusinesses(List<Business> businesses) {
+//        this.businesses = businesses;
+//    }
+
 }

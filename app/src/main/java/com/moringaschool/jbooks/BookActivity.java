@@ -4,8 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.util.List;
@@ -17,9 +20,12 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class BookActivity extends AppCompatActivity {
+    private static final String TAG = BookActivity.class.getSimpleName();
     private String[] books = new String[] {"Bye and Bye", "Living Today","Better with God"};
     @BindView(R.id.bookTextView) TextView mBookTextView;
     @BindView(R.id.listView) ListView mListView;
+    @BindView(R.id.errorTextView) TextView mErrorTextView;
+    @BindView(R.id.progressBar) ProgressBar mProgressBar;
 
 
 
@@ -46,31 +52,62 @@ public class BookActivity extends AppCompatActivity {
         call.enqueue(new Callback<GoogleBookSearchResponse>() {
             @Override
             public void onResponse(Call<GoogleBookSearchResponse> call, Response<GoogleBookSearchResponse> response) {
+                
+                hideProgressBar();
+                
                 if (response.isSuccessful()) {
-                    List<VolumeInfo> booksList = response.body().getVolumeinfos();
-                    String[] books = new String[books.size()];
+                    List<Item> booksList = response.body().getItems();
+                    String[] books = new String[booksList.size()];
+                    String[] volumeinfos = new String[booksList.size()];
 
                     for (int i = 0; i < books.length; i++){
-                        books[i] = booksList.get(i).getTitle();
+                        books[i] = booksList.get(i).getKind();
                     }
 
-                    for (int i = 0; i < item.length; i++) {
-                        Item item = booksList.get(i).getCategories().get(0);
-                        items[i] = item.getKind();
+                    for (int i = 0; i < volumeinfos.length; i++) {
+                        VolumeInfo volumeinfo = booksList.get(i).getVolumeInfos().get(0);
+                        volumeinfos[i] = volumeinfo.getTitle();
                     }
 
-                    ArrayAdapter adapter
-                            = new MyRestaurantsArrayAdapter(RestaurantsActivity.this, android.R.layout.simple_list_item_1, restaurants, categories);
+                    ArrayAdapter adapter = new BooksArrayAdapter(BookActivity.this, android.R.layout.simple_list_item_1, books);
                     mListView.setAdapter(adapter);
-
+                    
+                    showBooks();
+                } else {
+                    showUnsuccessfulMessage();
                 }
             }
 
             @Override
-            public void onFailure(Call<YelpBusinessesSearchResponse> call, Throwable t) {
-
+            public void onFailure(Call<GoogleBookSearchResponse> call, Throwable t) {
+                Log.e(TAG,"onFailure: ",t );
+               hideProgressBar();
+               showFailureMessage();
             }
 
         });
     }
+
+    private void showBooks() {
+    }
+
+    private void showFailureMessage() {
+        mErrorTextView.setText("Something went wrong. Please check your Internet connection and try again later");
+        mErrorTextView.setVisibility(View.VISIBLE);
+    }
+
+    private void showUnsuccessfulMessage() {
+        mErrorTextView.setText("Something went wrong. Please try again later");
+        mErrorTextView.setVisibility(View.VISIBLE);
+    }
+
+    private void showRestaurants() {
+        mListView.setVisibility(View.VISIBLE);
+        mBookTextView.setVisibility(View.VISIBLE);
+    }
+
+    private void hideProgressBar() {
+        mProgressBar.setVisibility(View.GONE);
+    }
+
 }

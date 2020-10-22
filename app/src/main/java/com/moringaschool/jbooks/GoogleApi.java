@@ -8,8 +8,7 @@ public interface GoogleApi {
     @GET("books/")
     Call<GoogleBookSearchResponse> getBooks(
             @Query("book") String book,
-            @Query("term") String term,
-            @Query("api_key") String api_key
+            @Query("term") String term
     );
 
 
