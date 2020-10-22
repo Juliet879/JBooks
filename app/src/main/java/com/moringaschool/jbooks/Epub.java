@@ -4,7 +4,7 @@ package com.moringaschool.jbooks;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Pdf {
+public class Epub {
 
     @SerializedName("isAvailable")
     @Expose
@@ -17,7 +17,7 @@ public class Pdf {
      * No args constructor for use in serialization
      * 
      */
-    public Pdf() {
+    public Epub() {
     }
 
     /**
@@ -25,7 +25,7 @@ public class Pdf {
      * @param isAvailable
      * @param downloadLink
      */
-    public Pdf(Boolean isAvailable, String downloadLink) {
+    public Epub(Boolean isAvailable, String downloadLink) {
         super();
         this.isAvailable = isAvailable;
         this.downloadLink = downloadLink;

@@ -9,7 +9,8 @@
         android:text="Available Books"
         android:id="@+id/bookTextView"
         android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"/>
+        android:layout_centerHorizontal="true"
+        android:visibility="gone"/>
 
     <ListView
         android:layout_width="match_parent"
@@ -17,7 +18,8 @@
         android:id="@+id/listView"
         android:layout_below="@id/bookTextView"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:visibility="gone"/>
 
     <ProgressBar
         android:id="@+id/progressBar"

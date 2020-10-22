@@ -6,10 +6,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -35,10 +37,21 @@ public class BookActivity extends AppCompatActivity {
         setContentView(R.layout.activity_book);
         ButterKnife.bind(this);
 
-//        mListView = (ListView) findViewById(R.id.listView);
-//        mBookTextView = (TextView) findViewById(R.id.bookTextView);
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, books);
         mListView.setAdapter(adapter);
+
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                String restaurant = ((TextView)view).getText().toString();
+                Toast.makeText(BookActivity.this, restaurant, Toast.LENGTH_LONG).show();
+            }
+        });
+
+//        mListView = (ListView) findViewById(R.id.listView);
+//        mBookTextView = (TextView) findViewById(R.id.bookTextView);
+//        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, books);
+//        mListView.setAdapter(adapter);
 
         Intent intent = getIntent();
         String book = intent.getStringExtra("books");
@@ -47,7 +60,7 @@ public class BookActivity extends AppCompatActivity {
 
         GoogleApi client = GoogleClient.getClient();
 
-            Call<GoogleBookSearchResponse> call = client.getBooks(book, "books");
+            Call<GoogleBookSearchResponse> call = client.getBooks("quilting", "AIzaSyCgkz3A0W4a-AMczr9uiRCVyVjiFBbqvOc");
 
         call.enqueue(new Callback<GoogleBookSearchResponse>() {
             @Override
@@ -56,18 +69,18 @@ public class BookActivity extends AppCompatActivity {
                 hideProgressBar();
                 
                 if (response.isSuccessful()) {
-                    List<Item> booksList = response.body().getItems();
+                    List<Item> booksList = response.body().;
                     String[] books = new String[booksList.size()];
-                    String[] volumeinfos = new String[booksList.size()];
+//                    String[] volumeinfos = new String[booksList.size()];
 
                     for (int i = 0; i < books.length; i++){
                         books[i] = booksList.get(i).getKind();
                     }
 
-                    for (int i = 0; i < volumeinfos.length; i++) {
-                        VolumeInfo volumeinfo = booksList.get(i).getVolumeInfos().get(0);
-                        volumeinfos[i] = volumeinfo.getTitle();
-                    }
+//                    for (int i = 0; i < volumeinfos.length; i++) {
+//                        VolumeInfo volumeinfo = booksList.get(i).getVolumeInfos().get(0);
+//                        volumeinfos[i] = volumeinfo.getTitle();
+//                    }
 
                     ArrayAdapter adapter = new BooksArrayAdapter(BookActivity.this, android.R.layout.simple_list_item_1, books);
                     mListView.setAdapter(adapter);

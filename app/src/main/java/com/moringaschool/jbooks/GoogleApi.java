@@ -5,11 +5,11 @@ import retrofit2.http.GET;
 import retrofit2.http.Query;
 
 public interface GoogleApi {
-    @GET("books/")
+    @GET("volumes")
     Call<GoogleBookSearchResponse> getBooks(
-            @Query("book") String book,
-            @Query("term") String term
-    );
+            @Query("q")String q,
+            @Query("key") String key
 
+    );
 
 }

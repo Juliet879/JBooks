@@ -10,15 +10,6 @@ public class VolumeInfo {
     @SerializedName("title")
     @Expose
     private String title;
-    @SerializedName("subtitle")
-    @Expose
-    private String subtitle;
-    @SerializedName("authors")
-    @Expose
-    private List<String> authors = null;
-    @SerializedName("publisher")
-    @Expose
-    private String publisher;
     @SerializedName("publishedDate")
     @Expose
     private String publishedDate;
@@ -34,12 +25,6 @@ public class VolumeInfo {
     @SerializedName("printType")
     @Expose
     private String printType;
-    @SerializedName("averageRating")
-    @Expose
-    private Integer averageRating;
-    @SerializedName("ratingsCount")
-    @Expose
-    private Integer ratingsCount;
     @SerializedName("maturityRating")
     @Expose
     private String maturityRating;
@@ -67,9 +52,12 @@ public class VolumeInfo {
     @SerializedName("canonicalVolumeLink")
     @Expose
     private String canonicalVolumeLink;
-    @SerializedName("description")
+    @SerializedName("subtitle")
     @Expose
-    private String description;
+    private String subtitle;
+    @SerializedName("authors")
+    @Expose
+    private List<String> authors = null;
     @SerializedName("categories")
     @Expose
     private List<String> categories = null;
@@ -89,36 +77,27 @@ public class VolumeInfo {
      * @param readingModes
      * @param previewLink
      * @param canonicalVolumeLink
-     * @param description
      * @param language
      * @param title
      * @param imageLinks
-     * @param subtitle
-     * @param averageRating
      * @param panelizationSummary
-     * @param publisher
-     * @param ratingsCount
+     * @param subtitle
      * @param publishedDate
      * @param categories
      * @param maturityRating
      * @param allowAnonLogging
      * @param contentVersion
-     * @param authors
      * @param infoLink
+     * @param authors
      */
-    public VolumeInfo(String title, String subtitle, List<String> authors, String publisher, String publishedDate, List<IndustryIdentifier> industryIdentifiers, ReadingModes readingModes, Integer pageCount, String printType, Integer averageRating, Integer ratingsCount, String maturityRating, Boolean allowAnonLogging, String contentVersion, PanelizationSummary panelizationSummary, ImageLinks imageLinks, String language, String previewLink, String infoLink, String canonicalVolumeLink, String description, List<String> categories) {
+    public VolumeInfo(String title, String publishedDate, List<IndustryIdentifier> industryIdentifiers, ReadingModes readingModes, Integer pageCount, String printType, String maturityRating, Boolean allowAnonLogging, String contentVersion, PanelizationSummary panelizationSummary, ImageLinks imageLinks, String language, String previewLink, String infoLink, String canonicalVolumeLink, String subtitle, List<String> authors, List<String> categories) {
         super();
         this.title = title;
-        this.subtitle = subtitle;
-        this.authors = authors;
-        this.publisher = publisher;
         this.publishedDate = publishedDate;
         this.industryIdentifiers = industryIdentifiers;
         this.readingModes = readingModes;
         this.pageCount = pageCount;
         this.printType = printType;
-        this.averageRating = averageRating;
-        this.ratingsCount = ratingsCount;
         this.maturityRating = maturityRating;
         this.allowAnonLogging = allowAnonLogging;
         this.contentVersion = contentVersion;
@@ -128,7 +107,8 @@ public class VolumeInfo {
         this.previewLink = previewLink;
         this.infoLink = infoLink;
         this.canonicalVolumeLink = canonicalVolumeLink;
-        this.description = description;
+        this.subtitle = subtitle;
+        this.authors = authors;
         this.categories = categories;
     }
 
@@ -138,30 +118,6 @@ public class VolumeInfo {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public String getSubtitle() {
-        return subtitle;
-    }
-
-    public void setSubtitle(String subtitle) {
-        this.subtitle = subtitle;
-    }
-
-    public List<String> getAuthors() {
-        return authors;
-    }
-
-    public void setAuthors(List<String> authors) {
-        this.authors = authors;
-    }
-
-    public String getPublisher() {
-        return publisher;
-    }
-
-    public void setPublisher(String publisher) {
-        this.publisher = publisher;
     }
 
     public String getPublishedDate() {
@@ -202,22 +158,6 @@ public class VolumeInfo {
 
     public void setPrintType(String printType) {
         this.printType = printType;
-    }
-
-    public Integer getAverageRating() {
-        return averageRating;
-    }
-
-    public void setAverageRating(Integer averageRating) {
-        this.averageRating = averageRating;
-    }
-
-    public Integer getRatingsCount() {
-        return ratingsCount;
-    }
-
-    public void setRatingsCount(Integer ratingsCount) {
-        this.ratingsCount = ratingsCount;
     }
 
     public String getMaturityRating() {
@@ -292,12 +232,20 @@ public class VolumeInfo {
         this.canonicalVolumeLink = canonicalVolumeLink;
     }
 
-    public String getDescription() {
-        return description;
+    public String getSubtitle() {
+        return subtitle;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setSubtitle(String subtitle) {
+        this.subtitle = subtitle;
+    }
+
+    public List<String> getAuthors() {
+        return authors;
+    }
+
+    public void setAuthors(List<String> authors) {
+        this.authors = authors;
     }
 
     public List<String> getCategories() {
