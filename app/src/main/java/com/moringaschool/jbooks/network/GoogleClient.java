@@ -1,5 +1,5 @@
 
-package com.moringaschool.jbooks;
+package com.moringaschool.jbooks.network;
 
 import java.io.IOException;
 

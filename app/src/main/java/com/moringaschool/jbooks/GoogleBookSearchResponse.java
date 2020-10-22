@@ -4,6 +4,7 @@ package com.moringaschool.jbooks;
 import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.moringaschool.jbooks.models.Item;
 
 public class GoogleBookSearchResponse {
 

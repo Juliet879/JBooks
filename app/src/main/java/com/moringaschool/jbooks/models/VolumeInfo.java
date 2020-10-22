@@ -1,9 +1,13 @@
 
-package com.moringaschool.jbooks;
+package com.moringaschool.jbooks.models;
 
 import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.moringaschool.jbooks.models.ImageLinks;
+import com.moringaschool.jbooks.models.IndustryIdentifier;
+import com.moringaschool.jbooks.models.PanelizationSummary;
+import com.moringaschool.jbooks.models.ReadingModes;
 
 public class VolumeInfo {
 

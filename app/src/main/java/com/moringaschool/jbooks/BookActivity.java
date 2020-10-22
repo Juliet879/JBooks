@@ -13,6 +13,10 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.moringaschool.jbooks.models.Item;
+import com.moringaschool.jbooks.network.GoogleApi;
+import com.moringaschool.jbooks.network.GoogleClient;
+
 import java.util.List;
 
 import butterknife.BindView;

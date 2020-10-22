@@ -1,4 +1,6 @@
-package com.moringaschool.jbooks;
+package com.moringaschool.jbooks.network;
+
+import com.moringaschool.jbooks.GoogleBookSearchResponse;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
