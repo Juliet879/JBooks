@@ -22,12 +22,7 @@ public class VolumeInfo {
     @SerializedName("description")
     @Expose
     private String description;
-    @SerializedName("industryIdentifiers")
-    @Expose
-    private List<IndustryIdentifier> industryIdentifiers = null;
-    @SerializedName("readingModes")
-    @Expose
-    private ReadingModes readingModes;
+
     @SerializedName("pageCount")
     @Expose
     private Integer pageCount;
@@ -46,12 +41,7 @@ public class VolumeInfo {
     @SerializedName("contentVersion")
     @Expose
     private String contentVersion;
-    @SerializedName("panelizationSummary")
-    @Expose
-    private PanelizationSummary panelizationSummary;
-    @SerializedName("imageLinks")
-    @Expose
-    private ImageLinks imageLinks;
+
     @SerializedName("language")
     @Expose
     private String language;
@@ -74,17 +64,14 @@ public class VolumeInfo {
 
     /**
      * 
-     * @param industryIdentifiers
      * @param pageCount
      * @param printType
-     * @param readingModes
      * @param previewLink
      * @param canonicalVolumeLink
      * @param description
      * @param language
      * @param title
-     * @param imageLinks
-     * @param panelizationSummary
+
      * @param publisher
      * @param publishedDate
      * @param categories
@@ -94,23 +81,20 @@ public class VolumeInfo {
      * @param authors
      * @param infoLink
      */
-    public VolumeInfo(String title, List<String> authors, String publisher, String publishedDate, String description, List<IndustryIdentifier> industryIdentifiers, ReadingModes readingModes, Integer pageCount, String printType, List<String> categories, String maturityRating, Boolean allowAnonLogging, String contentVersion, PanelizationSummary panelizationSummary, ImageLinks imageLinks, String language, String previewLink, String infoLink, String canonicalVolumeLink) {
+    public VolumeInfo(String title, List<String> authors, String publisher, String publishedDate, String description,Integer pageCount, String printType, List<String> categories, String maturityRating, Boolean allowAnonLogging, String contentVersion, String language, String previewLink, String infoLink, String canonicalVolumeLink) {
         super();
         this.title = title;
         this.authors = authors;
         this.publisher = publisher;
         this.publishedDate = publishedDate;
         this.description = description;
-        this.industryIdentifiers = industryIdentifiers;
-        this.readingModes = readingModes;
+
         this.pageCount = pageCount;
         this.printType = printType;
         this.categories = categories;
         this.maturityRating = maturityRating;
         this.allowAnonLogging = allowAnonLogging;
         this.contentVersion = contentVersion;
-        this.panelizationSummary = panelizationSummary;
-        this.imageLinks = imageLinks;
         this.language = language;
         this.previewLink = previewLink;
         this.infoLink = infoLink;
@@ -155,22 +139,6 @@ public class VolumeInfo {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public List<IndustryIdentifier> getIndustryIdentifiers() {
-        return industryIdentifiers;
-    }
-
-    public void setIndustryIdentifiers(List<IndustryIdentifier> industryIdentifiers) {
-        this.industryIdentifiers = industryIdentifiers;
-    }
-
-    public ReadingModes getReadingModes() {
-        return readingModes;
-    }
-
-    public void setReadingModes(ReadingModes readingModes) {
-        this.readingModes = readingModes;
     }
 
     public Integer getPageCount() {
@@ -221,21 +189,6 @@ public class VolumeInfo {
         this.contentVersion = contentVersion;
     }
 
-    public PanelizationSummary getPanelizationSummary() {
-        return panelizationSummary;
-    }
-
-    public void setPanelizationSummary(PanelizationSummary panelizationSummary) {
-        this.panelizationSummary = panelizationSummary;
-    }
-
-    public ImageLinks getImageLinks() {
-        return imageLinks;
-    }
-
-    public void setImageLinks(ImageLinks imageLinks) {
-        this.imageLinks = imageLinks;
-    }
 
     public String getLanguage() {
         return language;
