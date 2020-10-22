@@ -23,7 +23,7 @@ import retrofit2.Response;
 
 public class BookActivity extends AppCompatActivity {
     private static final String TAG = BookActivity.class.getSimpleName();
-    private String[] books = new String[] {"Bye and Bye", "Living Today","Better with God"};
+//    private String[] books = new String[] {"Bye and Bye", "Living Today","Better with God"};
     @BindView(R.id.bookTextView) TextView mBookTextView;
     @BindView(R.id.listView) ListView mListView;
     @BindView(R.id.errorTextView) TextView mErrorTextView;
@@ -37,14 +37,14 @@ public class BookActivity extends AppCompatActivity {
         setContentView(R.layout.activity_book);
         ButterKnife.bind(this);
 
-        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, books);
-        mListView.setAdapter(adapter);
+//        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, books);
+//        mListView.setAdapter(adapter);
 
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                String restaurant = ((TextView)view).getText().toString();
-                Toast.makeText(BookActivity.this, restaurant, Toast.LENGTH_LONG).show();
+                String book = ((TextView)view).getText().toString();
+                Toast.makeText(BookActivity.this, book, Toast.LENGTH_LONG).show();
             }
         });
 
@@ -54,7 +54,7 @@ public class BookActivity extends AppCompatActivity {
 //        mListView.setAdapter(adapter);
 
         Intent intent = getIntent();
-        String book = intent.getStringExtra("books");
+        String book = intent.getStringExtra("book");
         mBookTextView.setText("Current books available: " + book);
 
 
@@ -69,7 +69,7 @@ public class BookActivity extends AppCompatActivity {
                 hideProgressBar();
                 
                 if (response.isSuccessful()) {
-                    List<Item> booksList = response.body().;
+                    List<Item> booksList = response.body().getItems();
                     String[] books = new String[booksList.size()];
 //                    String[] volumeinfos = new String[booksList.size()];
 
@@ -101,9 +101,6 @@ public class BookActivity extends AppCompatActivity {
         });
     }
 
-    private void showBooks() {
-    }
-
     private void showFailureMessage() {
         mErrorTextView.setText("Something went wrong. Please check your Internet connection and try again later");
         mErrorTextView.setVisibility(View.VISIBLE);
@@ -114,7 +111,7 @@ public class BookActivity extends AppCompatActivity {
         mErrorTextView.setVisibility(View.VISIBLE);
     }
 
-    private void showRestaurants() {
+    private void showBooks() {
         mListView.setVisibility(View.VISIBLE);
         mBookTextView.setVisibility(View.VISIBLE);
     }
