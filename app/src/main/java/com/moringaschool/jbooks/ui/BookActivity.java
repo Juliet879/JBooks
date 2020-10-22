@@ -1,4 +1,4 @@
-package com.moringaschool.jbooks;
+package com.moringaschool.jbooks.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,7 +13,11 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.moringaschool.jbooks.BooksArrayAdapter;
+import com.moringaschool.jbooks.GoogleBookSearchResponse;
+import com.moringaschool.jbooks.R;
 import com.moringaschool.jbooks.models.Item;
+import com.moringaschool.jbooks.models.VolumeInfo;
 import com.moringaschool.jbooks.network.GoogleApi;
 import com.moringaschool.jbooks.network.GoogleClient;
 
@@ -73,12 +77,12 @@ public class BookActivity extends AppCompatActivity {
                 hideProgressBar();
                 
                 if (response.isSuccessful()) {
-                    List<Item> booksList = response.body().getItems();
+                    List<VolumeInfo> booksList = response.body().getVolumeInfo();
                     String[] books = new String[booksList.size()];
 //                    String[] volumeinfos = new String[booksList.size()];
 
                     for (int i = 0; i < books.length; i++){
-                        books[i] = booksList.get(i).getKind();
+                        books[i] = booksList.get(i).getTitle();
                     }
 
 //                    for (int i = 0; i < volumeinfos.length; i++) {

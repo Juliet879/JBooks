@@ -9,9 +9,9 @@
         android:icon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".BookActivity"></activity>
+        <activity android:name=".ui.BookActivity"></activity>
 
-        <activity android:name=".MainActivity"
+        <activity android:name=".ui.MainActivity"
             android:theme="@style/NoActionBarTheme">
 
             <intent-filter>
