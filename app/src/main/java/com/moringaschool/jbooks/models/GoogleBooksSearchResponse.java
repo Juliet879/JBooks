@@ -1,46 +1,41 @@
 
-package com.moringaschool.jbooks;
+package com.moringaschool.jbooks.models;
 
 import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import com.moringaschool.jbooks.models.Item;
-import com.moringaschool.jbooks.models.VolumeInfo;
 
-public class GoogleBookSearchResponse {
+public class GoogleBooksSearchResponse {
 
     @SerializedName("kind")
     @Expose
     private String kind;
-    @SerializedName("totaItemlItems")
+    @SerializedName("totalItems")
     @Expose
     private Integer totalItems;
     @SerializedName("items")
     @Expose
     private List<Item> items = null;
-    @SerializedName("volumeInfo")
-    @Expose
-    private List<VolumeInfo> volumeInfo = null;
+
     /**
      * No args constructor for use in serialization
      * 
      */
-    public GoogleBookSearchResponse() {
+    public GoogleBooksSearchResponse() {
     }
 
     /**
      * 
      * @param totalItems
      * @param kind
-     * @param volumeInfo
      * @param items
      */
-    public GoogleBookSearchResponse(String kind, Integer totalItems, List<Item> items, List<VolumeInfo> volumeInfo) {
+    public GoogleBooksSearchResponse(String kind, Integer totalItems, List<Item> items) {
         super();
         this.kind = kind;
         this.totalItems = totalItems;
         this.items = items;
-        this.volumeInfo = volumeInfo;
     }
 
     public String getKind() {
@@ -66,14 +61,5 @@ public class GoogleBookSearchResponse {
     public void setItems(List<Item> items) {
         this.items = items;
     }
-
-    public List<VolumeInfo> getVolumeInfo() {
-        return volumeInfo;
-    }
-
-    public void setVolumeInfo(List<VolumeInfo> volumeInfo) {
-        this.volumeInfo = volumeInfo;
-    }
-
 
 }

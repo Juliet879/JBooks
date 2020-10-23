@@ -14,7 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.moringaschool.jbooks.BooksArrayAdapter;
-import com.moringaschool.jbooks.GoogleBookSearchResponse;
+import com.moringaschool.jbooks.models.GoogleBooksSearchResponse;
 import com.moringaschool.jbooks.R;
 import com.moringaschool.jbooks.models.Item;
 import com.moringaschool.jbooks.models.VolumeInfo;
@@ -34,6 +34,8 @@ public class BookActivity extends AppCompatActivity {
 //    private String[] books = new String[] {"Bye and Bye", "Living Today","Better with God"};
     @BindView(R.id.bookTextView) TextView mBookTextView;
     @BindView(R.id.listView) ListView mListView;
+
+
     @BindView(R.id.errorTextView) TextView mErrorTextView;
     @BindView(R.id.progressBar) ProgressBar mProgressBar;
 
@@ -68,21 +70,21 @@ public class BookActivity extends AppCompatActivity {
 
         GoogleApi client = GoogleClient.getClient();
 
-            Call<GoogleBookSearchResponse> call = client.getBooks("quilting", "AIzaSyCgkz3A0W4a-AMczr9uiRCVyVjiFBbqvOc");
+            Call<GoogleBooksSearchResponse> Call = client.getBooks("quilting", "AIzaSyCgkz3A0W4a-AMczr9uiRCVyVjiFBbqvOc");
 
-        call.enqueue(new Callback<GoogleBookSearchResponse>() {
+        Call.enqueue(new Callback<GoogleBooksSearchResponse>() {
             @Override
-            public void onResponse(Call<GoogleBookSearchResponse> call, Response<GoogleBookSearchResponse> response) {
+            public void onResponse(Call<GoogleBooksSearchResponse> call, Response<GoogleBooksSearchResponse> response) {
                 
                 hideProgressBar();
                 
                 if (response.isSuccessful()) {
-                    List<VolumeInfo> booksList = response.body().getVolumeInfo();
+                    List<Item> booksList = response.body().getItems();
                     String[] books = new String[booksList.size()];
 //                    String[] volumeinfos = new String[booksList.size()];
 
                     for (int i = 0; i < books.length; i++){
-                        books[i] = booksList.get(i).getTitle();
+                        books[i] = booksList.get(i).getVolumeInfo().getTitle();
                     }
 
 //                    for (int i = 0; i < volumeinfos.length; i++) {
@@ -92,22 +94,24 @@ public class BookActivity extends AppCompatActivity {
 
                     ArrayAdapter adapter = new BooksArrayAdapter(BookActivity.this, android.R.layout.simple_list_item_1, books);
                     mListView.setAdapter(adapter);
-                    
+
                     showBooks();
                 } else {
                     showUnsuccessfulMessage();
                 }
             }
 
+
+
             @Override
-            public void onFailure(Call<GoogleBookSearchResponse> call, Throwable t) {
+            public void onFailure(Call<GoogleBooksSearchResponse> call, Throwable t) {
                 Log.e(TAG,"onFailure: ",t );
-               hideProgressBar();
-               showFailureMessage();
+             hideProgressBar();
+             showFailureMessage();
             }
 
         });
-    }
+   }
 
     private void showFailureMessage() {
         mErrorTextView.setText("Something went wrong. Please check your Internet connection and try again later");

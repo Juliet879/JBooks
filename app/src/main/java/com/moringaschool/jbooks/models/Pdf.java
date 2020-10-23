@@ -1,5 +1,5 @@
 
-package com.moringaschool.jbooks.models;
+package com.moringaschool.jbooks;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -9,9 +9,9 @@ public class Pdf {
     @SerializedName("isAvailable")
     @Expose
     private Boolean isAvailable;
-    @SerializedName("downloadLink")
+    @SerializedName("acsTokenLink")
     @Expose
-    private String downloadLink;
+    private String acsTokenLink;
 
     /**
      * No args constructor for use in serialization
@@ -23,12 +23,12 @@ public class Pdf {
     /**
      * 
      * @param isAvailable
-     * @param downloadLink
+     * @param acsTokenLink
      */
-    public Pdf(Boolean isAvailable, String downloadLink) {
+    public Pdf(Boolean isAvailable, String acsTokenLink) {
         super();
         this.isAvailable = isAvailable;
-        this.downloadLink = downloadLink;
+        this.acsTokenLink = acsTokenLink;
     }
 
     public Boolean getIsAvailable() {
@@ -39,12 +39,12 @@ public class Pdf {
         this.isAvailable = isAvailable;
     }
 
-    public String getDownloadLink() {
-        return downloadLink;
+    public String getAcsTokenLink() {
+        return acsTokenLink;
     }
 
-    public void setDownloadLink(String downloadLink) {
-        this.downloadLink = downloadLink;
+    public void setAcsTokenLink(String acsTokenLink) {
+        this.acsTokenLink = acsTokenLink;
     }
 
 }

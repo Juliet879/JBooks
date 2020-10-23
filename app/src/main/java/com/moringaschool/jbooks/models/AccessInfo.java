@@ -1,5 +1,5 @@
 
-package com.moringaschool.jbooks.models;
+package com.moringaschool.jbooks;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

@@ -4,19 +4,16 @@ package com.moringaschool.jbooks.models;
 import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import com.moringaschool.jbooks.models.ImageLinks;
-import com.moringaschool.jbooks.models.IndustryIdentifier;
-import com.moringaschool.jbooks.models.PanelizationSummary;
-import com.moringaschool.jbooks.models.ReadingModes;
+import com.moringaschool.jbooks.ImageLinks;
+import com.moringaschool.jbooks.IndustryIdentifier;
+import com.moringaschool.jbooks.PanelizationSummary;
+import com.moringaschool.jbooks.ReadingModes;
 
 public class VolumeInfo {
 
     @SerializedName("title")
     @Expose
     private String title;
-    @SerializedName("subtitle")
-    @Expose
-    private String subtitle;
     @SerializedName("authors")
     @Expose
     private List<String> authors = null;
@@ -26,6 +23,9 @@ public class VolumeInfo {
     @SerializedName("publishedDate")
     @Expose
     private String publishedDate;
+    @SerializedName("description")
+    @Expose
+    private String description;
     @SerializedName("industryIdentifiers")
     @Expose
     private List<IndustryIdentifier> industryIdentifiers = null;
@@ -38,12 +38,9 @@ public class VolumeInfo {
     @SerializedName("printType")
     @Expose
     private String printType;
-    @SerializedName("averageRating")
+    @SerializedName("categories")
     @Expose
-    private Integer averageRating;
-    @SerializedName("ratingsCount")
-    @Expose
-    private Integer ratingsCount;
+    private List<String> categories = null;
     @SerializedName("maturityRating")
     @Expose
     private String maturityRating;
@@ -53,9 +50,6 @@ public class VolumeInfo {
     @SerializedName("contentVersion")
     @Expose
     private String contentVersion;
-    @SerializedName("panelizationSummary")
-    @Expose
-    private PanelizationSummary panelizationSummary;
     @SerializedName("imageLinks")
     @Expose
     private ImageLinks imageLinks;
@@ -71,12 +65,18 @@ public class VolumeInfo {
     @SerializedName("canonicalVolumeLink")
     @Expose
     private String canonicalVolumeLink;
-    @SerializedName("description")
+    @SerializedName("averageRating")
     @Expose
-    private String description;
-    @SerializedName("categories")
+    private Integer averageRating;
+    @SerializedName("ratingsCount")
     @Expose
-    private List<String> categories = null;
+    private Integer ratingsCount;
+    @SerializedName("panelizationSummary")
+    @Expose
+    private PanelizationSummary panelizationSummary;
+    @SerializedName("subtitle")
+    @Expose
+    private String subtitle;
 
     /**
      * No args constructor for use in serialization
@@ -97,9 +97,9 @@ public class VolumeInfo {
      * @param language
      * @param title
      * @param imageLinks
-     * @param subtitle
      * @param averageRating
      * @param panelizationSummary
+     * @param subtitle
      * @param publisher
      * @param ratingsCount
      * @param publishedDate
@@ -110,30 +110,30 @@ public class VolumeInfo {
      * @param authors
      * @param infoLink
      */
-    public VolumeInfo(String title, String subtitle, List<String> authors, String publisher, String publishedDate, List<IndustryIdentifier> industryIdentifiers, ReadingModes readingModes, Integer pageCount, String printType, Integer averageRating, Integer ratingsCount, String maturityRating, Boolean allowAnonLogging, String contentVersion, PanelizationSummary panelizationSummary, ImageLinks imageLinks, String language, String previewLink, String infoLink, String canonicalVolumeLink, String description, List<String> categories) {
+    public VolumeInfo(String title, List<String> authors, String publisher, String publishedDate, String description, List<IndustryIdentifier> industryIdentifiers, ReadingModes readingModes, Integer pageCount, String printType, List<String> categories, String maturityRating, Boolean allowAnonLogging, String contentVersion, ImageLinks imageLinks, String language, String previewLink, String infoLink, String canonicalVolumeLink, Integer averageRating, Integer ratingsCount, PanelizationSummary panelizationSummary, String subtitle) {
         super();
         this.title = title;
-        this.subtitle = subtitle;
         this.authors = authors;
         this.publisher = publisher;
         this.publishedDate = publishedDate;
+        this.description = description;
         this.industryIdentifiers = industryIdentifiers;
         this.readingModes = readingModes;
         this.pageCount = pageCount;
         this.printType = printType;
-        this.averageRating = averageRating;
-        this.ratingsCount = ratingsCount;
+        this.categories = categories;
         this.maturityRating = maturityRating;
         this.allowAnonLogging = allowAnonLogging;
         this.contentVersion = contentVersion;
-        this.panelizationSummary = panelizationSummary;
         this.imageLinks = imageLinks;
         this.language = language;
         this.previewLink = previewLink;
         this.infoLink = infoLink;
         this.canonicalVolumeLink = canonicalVolumeLink;
-        this.description = description;
-        this.categories = categories;
+        this.averageRating = averageRating;
+        this.ratingsCount = ratingsCount;
+        this.panelizationSummary = panelizationSummary;
+        this.subtitle = subtitle;
     }
 
     public String getTitle() {
@@ -142,14 +142,6 @@ public class VolumeInfo {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public String getSubtitle() {
-        return subtitle;
-    }
-
-    public void setSubtitle(String subtitle) {
-        this.subtitle = subtitle;
     }
 
     public List<String> getAuthors() {
@@ -174,6 +166,14 @@ public class VolumeInfo {
 
     public void setPublishedDate(String publishedDate) {
         this.publishedDate = publishedDate;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public List<IndustryIdentifier> getIndustryIdentifiers() {
@@ -208,20 +208,12 @@ public class VolumeInfo {
         this.printType = printType;
     }
 
-    public Integer getAverageRating() {
-        return averageRating;
+    public List<String> getCategories() {
+        return categories;
     }
 
-    public void setAverageRating(Integer averageRating) {
-        this.averageRating = averageRating;
-    }
-
-    public Integer getRatingsCount() {
-        return ratingsCount;
-    }
-
-    public void setRatingsCount(Integer ratingsCount) {
-        this.ratingsCount = ratingsCount;
+    public void setCategories(List<String> categories) {
+        this.categories = categories;
     }
 
     public String getMaturityRating() {
@@ -246,14 +238,6 @@ public class VolumeInfo {
 
     public void setContentVersion(String contentVersion) {
         this.contentVersion = contentVersion;
-    }
-
-    public PanelizationSummary getPanelizationSummary() {
-        return panelizationSummary;
-    }
-
-    public void setPanelizationSummary(PanelizationSummary panelizationSummary) {
-        this.panelizationSummary = panelizationSummary;
     }
 
     public ImageLinks getImageLinks() {
@@ -296,20 +280,36 @@ public class VolumeInfo {
         this.canonicalVolumeLink = canonicalVolumeLink;
     }
 
-    public String getDescription() {
-        return description;
+    public Integer getAverageRating() {
+        return averageRating;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setAverageRating(Integer averageRating) {
+        this.averageRating = averageRating;
     }
 
-    public List<String> getCategories() {
-        return categories;
+    public Integer getRatingsCount() {
+        return ratingsCount;
     }
 
-    public void setCategories(List<String> categories) {
-        this.categories = categories;
+    public void setRatingsCount(Integer ratingsCount) {
+        this.ratingsCount = ratingsCount;
+    }
+
+    public PanelizationSummary getPanelizationSummary() {
+        return panelizationSummary;
+    }
+
+    public void setPanelizationSummary(PanelizationSummary panelizationSummary) {
+        this.panelizationSummary = panelizationSummary;
+    }
+
+    public String getSubtitle() {
+        return subtitle;
+    }
+
+    public void setSubtitle(String subtitle) {
+        this.subtitle = subtitle;
     }
 
 }
