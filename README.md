@@ -25,6 +25,13 @@ User creates account
 User is directed to his/her profile account
 User is able to find friend on the same geolocation.
 [Developer Details]
+Clone this repository and open with Android Studio
+https://github.com/ShemBrooklyne/NewsUpdate
+Emulate on a virtual Machine or on your Phone Device
+Get your API key https://newsapi.org/register
+|Replace your API key
+public static final String API_KEY = "your secret api key";
+
 
 
 # Installing Tools
