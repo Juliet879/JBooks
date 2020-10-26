@@ -37,8 +37,11 @@ public static final String API_KEY = "your secret api key";
 
 # Installing Tools
 Android Studio : https://www.googleadservices.com/pagead
+
 Maven : https://maven.apache.org/install.html
+
 Robolectric : http://robolectric.org/getting-started/
+
 Espresso : https://developer.android.com/training/testing/espresso
 
 # Api Used
