@@ -2,18 +2,18 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.moringaschool.jbooks">
 
-    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.BookActivity"></activity>
-
-        <activity android:name=".ui.MainActivity"
+        <activity android:name=".ui.BookDetailActivity"></activity>
+        <activity android:name=".ui.BookListActivity" />
+        <activity
+            android:name=".ui.MainActivity"
             android:theme="@style/NoActionBarTheme">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String book = bookEditText.getText().toString();
-                Intent intent = new Intent(MainActivity.this, BookActivity.class);
+                Intent intent = new Intent(MainActivity.this, BookListActivity.class);
                 intent.putExtra("book", book);
                 startActivity(intent);
 

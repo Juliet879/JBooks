@@ -122,7 +122,7 @@
         android:layout_marginTop="12dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Search Book"
+        android:hint="Search Book"
         android:textColor="#302F2B"
         android:textSize="14sp"
         android:textStyle="bold"
