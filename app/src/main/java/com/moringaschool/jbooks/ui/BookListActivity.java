@@ -21,6 +21,7 @@ import com.moringaschool.jbooks.models.Item;
 import com.moringaschool.jbooks.network.GoogleApi;
 import com.moringaschool.jbooks.network.GoogleClient;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -31,12 +32,12 @@ import retrofit2.Response;
 
 public class BookListActivity extends AppCompatActivity {
     private static final String TAG = BookListActivity.class.getSimpleName();
-//    private String[] books = new String[] {"Bye and Bye", "Living Today","Better with God"};
-//    @BindView(R.id.bookTextView) TextView mBookTextView;
-//    @BindView(R.id.listView) ListView mListView;
-
-    private SharedPreferences mSharedPreferences;
-    private String mRecentAddress;
+////    private String[] books = new String[] {"Bye and Bye", "Living Today","Better with God"};
+////    @BindView(R.id.bookTextView) TextView mBookTextView;
+////    @BindView(R.id.listView) ListView mListView;
+//
+//    private SharedPreferences mSharedPreferences;
+//    private String mRecentAddress;
 
     @BindView(R.id.recyclerView) RecyclerView mRecyclerView;
 
@@ -47,7 +48,6 @@ public class BookListActivity extends AppCompatActivity {
     private BookListAdapter mAdapter;
 
     public List<Item> google_book;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +71,8 @@ public class BookListActivity extends AppCompatActivity {
         String book = intent.getStringExtra("book");
         intent.putExtra("book",book);
 
+        getGoogle_books(book);
+
 
         GoogleApi client = GoogleClient.getClient();
 
@@ -84,7 +86,6 @@ public class BookListActivity extends AppCompatActivity {
                 hideProgressBar();
 
                 if (response.isSuccessful()) {
-
                     google_book = response.body().getItems();
                 mAdapter = new BookListAdapter(BookListActivity.this, google_book);
                 mRecyclerView.setAdapter(mAdapter);
@@ -118,12 +119,12 @@ public class BookListActivity extends AppCompatActivity {
 
     });
 
-        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        mRecentAddress = mSharedPreferences.getString(Constants.PREFERENCES_BOOK_KEY, null);
-        if (mRecentAddress != null) {
-            getGoogle_books(mRecentAddress);
-        }
-//        Log.d("Shared Pref Location", mRecentAddress);
+//        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+//        mRecentAddress = mSharedPreferences.getString(Constants.PREFERENCES_BOOK_KEY, null);
+//        if (mRecentAddress != null) {
+//            getGoogle_books(mRecentAddress);
+//        }
+////        Log.d("Shared Pref Location", mRecentAddress);
 }
 
     private void getGoogle_books(String mRecentAddress) {
