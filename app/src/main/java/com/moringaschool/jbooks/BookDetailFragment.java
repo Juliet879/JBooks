@@ -6,9 +6,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.moringaschool.jbooks.models.Item;
 
 import org.parceler.Parcels;
@@ -19,7 +22,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class BookDetailFragment extends Fragment {
+public class BookDetailFragment extends Fragment implements View.OnClickListener{
     @BindView(R.id.bookImageView) ImageView mImageLabel;
     @BindView(R.id.titleTextView) TextView mTitleLabel;
     @BindView(R.id.publisherTextView) TextView mPublisherLabel;
@@ -52,7 +55,6 @@ public class BookDetailFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_book_detail, container, false);
         ButterKnife.bind(this, view);
 
-        List<String> categories = new ArrayList<>();
 
 
 //        mTitleLabel.setText(mGoogle_book.getVolumeInfo().getTitle());
@@ -60,6 +62,20 @@ public class BookDetailFragment extends Fragment {
 //        mSelfLinkLabel.setText(mGoogle_book.getSelfLink());
 //        mPhoneLabel.setText(mGoogle_book.getAccessInfo().getAccessViewStatus());
 
+        mPhoneLabel.setOnClickListener(this);
+
         return view;
+    }
+
+    @Override
+    public void onClick(View v) {
+
+        if (v == mSaveBookButton) {
+            DatabaseReference google_bookRef = FirebaseDatabase
+                    .getInstance()
+                    .getReference(Constants.FIREBASE_CHILD_BOOKS);
+            google_bookRef.push().setValue(mGoogle_book);
+            Toast.makeText(getContext(), "Saved", Toast.LENGTH_SHORT).show();
+        }
     }
 }
