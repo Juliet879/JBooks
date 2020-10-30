@@ -6,6 +6,9 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import com.moringaschool.jbooks.models.Item;
 
+import org.parceler.Parcel;
+
+@Parcel
 public class GoogleBooksSearchResponse {
 
     @SerializedName("kind")

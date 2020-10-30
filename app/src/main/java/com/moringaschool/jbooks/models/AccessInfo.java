@@ -1,9 +1,14 @@
 
-package com.moringaschool.jbooks;
+package com.moringaschool.jbooks.models;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.moringaschool.jbooks.Epub;
+import com.moringaschool.jbooks.Pdf;
 
+import org.parceler.Parcel;
+
+@Parcel
 public class AccessInfo {
 
     @SerializedName("country")

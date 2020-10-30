@@ -4,11 +4,14 @@ package com.moringaschool.jbooks.models;
 import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import com.moringaschool.jbooks.ImageLinks;
-import com.moringaschool.jbooks.IndustryIdentifier;
-import com.moringaschool.jbooks.PanelizationSummary;
-import com.moringaschool.jbooks.ReadingModes;
+import com.moringaschool.jbooks.models.ImageLinks;
+import com.moringaschool.jbooks.models.IndustryIdentifier;
+import com.moringaschool.jbooks.models.PanelizationSummary;
+import com.moringaschool.jbooks.models.ReadingModes;
 
+import org.parceler.Parcel;
+
+@Parcel
 public class VolumeInfo {
 
     @SerializedName("title")

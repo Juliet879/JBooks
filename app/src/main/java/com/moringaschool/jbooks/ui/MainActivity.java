@@ -16,7 +16,7 @@ import butterknife.ButterKnife;
 public class MainActivity extends AppCompatActivity {
 
     @BindView(R.id.getStartedButton) Button mGetStartedButton;
-    @BindView(R.id.bookEditText) EditText bookEditText;
+    @BindView(R.id.bookEditText) EditText mbookEditText;
 
 
     @Override
@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         mGetStartedButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String book = bookEditText.getText().toString();
+                String book = mbookEditText.getText().toString();
                 Intent intent = new Intent(MainActivity.this, BookListActivity.class);
                 intent.putExtra("book", book);
                 startActivity(intent);
