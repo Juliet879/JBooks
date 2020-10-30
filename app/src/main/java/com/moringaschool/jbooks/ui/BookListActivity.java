@@ -5,11 +5,15 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.moringaschool.jbooks.Constants;
 import com.moringaschool.jbooks.adapters.BookListAdapter;
 import com.moringaschool.jbooks.models.GoogleBooksSearchResponse;
 import com.moringaschool.jbooks.R;
@@ -30,6 +34,9 @@ public class BookListActivity extends AppCompatActivity {
 //    private String[] books = new String[] {"Bye and Bye", "Living Today","Better with God"};
 //    @BindView(R.id.bookTextView) TextView mBookTextView;
 //    @BindView(R.id.listView) ListView mListView;
+
+    private SharedPreferences mSharedPreferences;
+    private String mRecentAddress;
 
     @BindView(R.id.recyclerView) RecyclerView mRecyclerView;
 
@@ -110,11 +117,17 @@ public class BookListActivity extends AppCompatActivity {
         }
 
     });
+
+        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        mRecentAddress = mSharedPreferences.getString(Constants.PREFERENCES_BOOK_KEY, null);
+        if (mRecentAddress != null) {
+            getGoogle_books(mRecentAddress);
+        }
+//        Log.d("Shared Pref Location", mRecentAddress);
 }
 
-
-
-
+    private void getGoogle_books(String mRecentAddress) {
+    }
 
 
     private void showFailureMessage() {

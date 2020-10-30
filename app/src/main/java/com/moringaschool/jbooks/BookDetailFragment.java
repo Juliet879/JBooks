@@ -1,4 +1,4 @@
-package com.moringaschool.jbooks.ui;
+package com.moringaschool.jbooks;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
-import com.moringaschool.jbooks.R;
 import com.moringaschool.jbooks.models.Item;
 
 import org.parceler.Parcels;
@@ -56,10 +55,10 @@ public class BookDetailFragment extends Fragment {
         List<String> categories = new ArrayList<>();
 
 
-        mTitleLabel.setText(mGoogle_book.getVolumeInfo().getTitle());
-        mPublisherLabel.setText(mGoogle_book.getVolumeInfo().getPublisher());
-        mSelfLinkLabel.setText(mGoogle_book.getSelfLink());
-        mPhoneLabel.setText(mGoogle_book.getAccessInfo().getAccessViewStatus());
+//        mTitleLabel.setText(mGoogle_book.getVolumeInfo().getTitle());
+//        mPublisherLabel.setText(mGoogle_book.getVolumeInfo().getPublisher());
+//        mSelfLinkLabel.setText(mGoogle_book.getSelfLink());
+//        mPhoneLabel.setText(mGoogle_book.getAccessInfo().getAccessViewStatus());
 
         return view;
     }
