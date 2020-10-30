@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+import com.moringaschool.jbooks.R;
+
 public class BookDetailActivity extends AppCompatActivity {
 
     @Override
