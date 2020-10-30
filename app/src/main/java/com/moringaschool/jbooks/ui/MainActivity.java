@@ -10,6 +10,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.moringaschool.jbooks.Constants;
 import com.moringaschool.jbooks.R;
 
@@ -18,9 +20,9 @@ import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
-    private SharedPreferences mSharedPreferences;
-    private SharedPreferences.Editor mEditor;
-
+//    private SharedPreferences mSharedPreferences;
+//    private SharedPreferences.Editor mEditor;
+    private DatabaseReference mSearchedBookReference;
 
     @BindView(R.id.getStartedButton) Button mGetStartedButton;
     @BindView(R.id.bookEditText) EditText mbookEditText;
@@ -28,14 +30,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        mSearchedBookReference = FirebaseDatabase
+                .getInstance()
+                .getReference()
+                .child(Constants.FIREBASE_CHILD_SEARCHED_BOOK);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         ButterKnife.bind(this);
 
-        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        mEditor = mSharedPreferences.edit();
-
+//        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+//        mEditor = mSharedPreferences.edit();
+//
 
         mGetStartedButton.setOnClickListener(this);
     }
@@ -44,16 +51,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if (v == mGetStartedButton) {
 
                     String book = mbookEditText.getText().toString();
-                    if(!(book).equals("")) {
-                        addToSharedPreferences(book);
-                    }
+//                    if(!(book).equals("")) {
+//                        addToSharedPreferences(book);
+//                    }
+                    saveBookToFirebase(book);
                     Intent intent = new Intent(MainActivity.this, BookListActivity.class);
                     intent.putExtra("book", book);
                     startActivity(intent);
 
                 }
             }
+    public void saveBookToFirebase(String book) {
+        mSearchedBookReference.setValue(book);
+    }
 
-    private void addToSharedPreferences(String book) {
-        mEditor.putString(Constants.PREFERENCES_BOOK_KEY, book).apply();    }
+//    private void addToSharedPreferences(String book) {
+//        mEditor.putString(Constants.PREFERENCES_BOOK_KEY, book).apply();    }
 }
