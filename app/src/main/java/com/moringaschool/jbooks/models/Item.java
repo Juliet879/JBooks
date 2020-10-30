@@ -4,8 +4,8 @@ package com.moringaschool.jbooks.models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import com.moringaschool.jbooks.models.AccessInfo;
-import com.moringaschool.jbooks.SaleInfo;
-import com.moringaschool.jbooks.SearchInfo;
+import com.moringaschool.jbooks.models.SaleInfo;
+import com.moringaschool.jbooks.models.SearchInfo;
 import com.moringaschool.jbooks.models.VolumeInfo;
 
 import org.parceler.Parcel;

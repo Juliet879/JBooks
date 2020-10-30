@@ -59,7 +59,7 @@ public class BookDetailFragment extends Fragment {
         mTitleLabel.setText(mGoogle_book.getVolumeInfo().getTitle());
         mPublisherLabel.setText(mGoogle_book.getVolumeInfo().getPublisher());
         mSelfLinkLabel.setText(mGoogle_book.getSelfLink());
-        mPhoneLabel.setText(mGoogle_book.getPhone());
+        mPhoneLabel.setText(mGoogle_book.getAccessInfo().getAccessViewStatus());
 
         return view;
     }
