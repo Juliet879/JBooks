@@ -20,18 +20,18 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/bookNameTextView"
+            android:id="@+id/titleTextView"
             android:textSize="20dp"
             android:textStyle="bold"
-            android:text="Book Name"
+            android:text="Title"
             android:textColor="@color/colorPrimary"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Book Type"
-            android:id="@+id/categoryTextView"
-            android:layout_below="@+id/bookNameTextView"
+            android:text="Publisher"
+            android:id="@+id/publisherTextView"
+            android:layout_below="@+id/titleTextView"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:textStyle="italic"/>
