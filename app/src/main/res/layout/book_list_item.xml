@@ -7,7 +7,7 @@
         android:layout_width="130dp"
         android:layout_height="100dp"
         android:id="@+id/bookImageView"
-        android:src="@drawable/image5"
+        android:src="@drawable/image7"
         android:scaleType="centerCrop"/>
 
     <LinearLayout
