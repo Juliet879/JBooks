@@ -25,7 +25,7 @@ import java.util.ArrayList;
 
 public class FireBaseBookViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-    View mView;
+    static View mView;
     Context mContext;
 
     public FireBaseBookViewHolder(View itemView) {
@@ -36,7 +36,7 @@ public class FireBaseBookViewHolder extends RecyclerView.ViewHolder implements V
     }
 
 
-    public void bindGoogle_book(Item google_boook) {
+    public static void bindGoogle_book(Item google_boook) {
         ImageView bookImageView = (ImageView) mView.findViewById(R.id.bookImageView);
         TextView titleTextView = (TextView) mView.findViewById(R.id.titleTextView);
         TextView publisherTextView = (TextView) mView.findViewById(R.id.publisherTextView);

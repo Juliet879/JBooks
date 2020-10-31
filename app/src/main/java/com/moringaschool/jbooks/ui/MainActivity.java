@@ -26,6 +26,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 //    private SharedPreferences mSharedPreferences;
 //    private SharedPreferences.Editor mEditor;
+
+    @BindView(R.id.saveBookButton) Button mSavedBookButton;
     private ValueEventListener mSearchedBookReferenceListener;
     private DatabaseReference mSearchedBookReference;
 
@@ -69,17 +71,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //
 
         mGetStartedButton.setOnClickListener(this);
+        mSavedBookButton.setOnClickListener(this);
     }
             @Override
             public void onClick(View v) {
-                if (v == mGetStartedButton) {
+                if (v == mSavedBookButton) {
 
                     String book = mbookEditText.getText().toString();
 //                    if(!(book).equals("")) {
 //                        addToSharedPreferences(book);
 //                    }
                     saveBookToFirebase(book);
-                    Intent intent = new Intent(MainActivity.this, BookListActivity.class);
+                    Intent intent = new Intent(MainActivity.this, SavedBookListActivity.class);
                     intent.putExtra("book", book);
                     startActivity(intent);
 

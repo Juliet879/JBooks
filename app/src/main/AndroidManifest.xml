@@ -9,7 +9,8 @@
         android:icon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.BookDetailActivity"></activity>
+        <activity android:name=".ui.SavedBookListActivity"></activity>
+        <activity android:name=".ui.BookDetailActivity" />
         <activity android:name=".ui.BookListActivity" />
         <activity
             android:name=".ui.MainActivity"
