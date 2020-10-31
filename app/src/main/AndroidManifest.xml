@@ -9,12 +9,17 @@
         android:icon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.SavedBookListActivity"></activity>
+        <activity android:name=".ui.CreateAccountActivity"></activity>
+        <activity android:name=".ui.SavedBookListActivity" />
         <activity android:name=".ui.BookDetailActivity" />
         <activity android:name=".ui.BookListActivity" />
         <activity
             android:name=".ui.MainActivity"
             android:theme="@style/NoActionBarTheme">
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
