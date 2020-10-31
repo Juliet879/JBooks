@@ -26,39 +26,39 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 //    private SharedPreferences mSharedPreferences;
 //    private SharedPreferences.Editor mEditor;
+//
+//    private ValueEventListener mSearchedBookReferenceListener;
+//    private DatabaseReference mSearchedBookReference;
 
     @BindView(R.id.saveBookButton) Button mSavedBookButton;
-    private ValueEventListener mSearchedBookReferenceListener;
-    private DatabaseReference mSearchedBookReference;
-
     @BindView(R.id.getStartedButton) Button mGetStartedButton;
     @BindView(R.id.bookEditText) EditText mbookEditText;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        mSearchedBookReference = FirebaseDatabase
-                .getInstance()
-                .getReference()
-                .child(Constants.FIREBASE_CHILD_SEARCHED_BOOK);
-
-
-        mSearchedBookReferenceListener = mSearchedBookReference.addValueEventListener(new ValueEventListener() {
-
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) { //something changed!
-                for (DataSnapshot bookSnapshot : dataSnapshot.getChildren()) {
-                    String book = bookSnapshot.getValue().toString();
-                    Log.d("Book updated", "book: " + book); //log
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) { //update UI here if error occurred.
-
-            }
-        });
-
+//        mSearchedBookReference = FirebaseDatabase
+//                .getInstance()
+//                .getReference()
+//                .child(Constants.FIREBASE_CHILD_SEARCHED_BOOK);
+//
+//
+//        mSearchedBookReferenceListener = mSearchedBookReference.addValueEventListener(new ValueEventListener() {
+//
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) { //something changed!
+//                for (DataSnapshot bookSnapshot : dataSnapshot.getChildren()) {
+//                    String book = bookSnapshot.getValue().toString();
+//                    Log.d("Book updated", "book: " + book); //log
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) { //update UI here if error occurred.
+//
+//            }
+//        });
+//
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -75,29 +75,34 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
             @Override
             public void onClick(View v) {
-                if (v == mSavedBookButton) {
+                if (v == mGetStartedButton) {
+                    Intent intent = new Intent(MainActivity.this, BookListActivity.class);
+//                    intent.putExtra("book", book);
+                    startActivity(intent);
+                }
 
-                    String book = mbookEditText.getText().toString();
+//
+//                    String book = mbookEditText.getText().toString();
 //                    if(!(book).equals("")) {
 //                        addToSharedPreferences(book);
 //                    }
-                    saveBookToFirebase(book);
+                if (v == mSavedBookButton) {
                     Intent intent = new Intent(MainActivity.this, SavedBookListActivity.class);
-                    intent.putExtra("book", book);
+//                    intent.putExtra("book", book);
                     startActivity(intent);
 
                 }
             }
-    public void saveBookToFirebase(String book) {
-        mSearchedBookReference.push().setValue(book);
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        mSearchedBookReference.removeEventListener(mSearchedBookReferenceListener);
-    }
-
+//    public void saveBookToFirebase(String book) {
+//        mSearchedBookReference.push().setValue(book);
+//    }
+//
+//    @Override
+//    protected void onDestroy() {
+//        super.onDestroy();
+//        mSearchedBookReference.removeEventListener(mSearchedBookReferenceListener);
+//    }
+//
 //    private void addToSharedPreferences(String book) {
 //        mEditor.putString(Constants.PREFERENCES_BOOK_KEY, book).apply();    }
 }
