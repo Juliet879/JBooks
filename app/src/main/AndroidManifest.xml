@@ -7,26 +7,28 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.LoginActivity"></activity>
-        <activity android:name=".ui.CreateAccountActivity" />
-        <activity android:name=".ui.SavedBookListActivity" />
-        <activity android:name=".ui.BookDetailActivity" />
-        <activity android:name=".ui.BookListActivity" />
         <activity
-            android:name=".ui.MainActivity"
-            android:theme="@style/NoActionBarTheme">
-            <meta-data
-                android:name="android.app.searchable"
-                android:resource="@xml/searchable" />
-
+            android:name=".ui.MainActivity">
+        </activity>
+        <activity android:name=".ui.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
+                <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ui.BookListActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.MainActivity" />
+        </activity>
+        <activity android:name=".ui.BookDetailActivity" />
+        <activity android:name=".ui.SavedBookListActivity" />
+        <activity android:name=".ui.CreateAccountActivity" />
+
     </application>
 
 </manifest>
