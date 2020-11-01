@@ -27,11 +27,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public static final String TAG = LoginActivity.class.getSimpleName();
 
     @BindView(R.id.registerTextView) TextView mRegisterTextView;
-    @BindView(R.id.passwordLoginButton)
-    Button mPasswordLoginButton;
+    @BindView(R.id.passwordLoginButton) Button mPasswordLoginButton;
     @BindView(R.id.emailEditText) EditText mEmailEditText;
-    @BindView(R.id.passwordEditText)
-    EditText mPasswordEditText;
+    @BindView(R.id.passwordEditText) EditText mPasswordEditText;
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
@@ -60,6 +58,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 }
             }
         };
+
 
         mRegisterTextView.setOnClickListener(this);
         mPasswordLoginButton.setOnClickListener(this);
@@ -95,6 +94,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             mEmailEditText.setError("Please enter your email");
             return;
         }
+
         if (password.equals("")) {
             mPasswordEditText.setError("Password cannot be blank");
             return;

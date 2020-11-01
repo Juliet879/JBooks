@@ -113,13 +113,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onClick(View v) {
                 if (v == mGetStartedButton) {
+                    String book = mbookEditText.getText().toString();
                     Intent intent = new Intent(MainActivity.this, BookListActivity.class);
-//                    intent.putExtra("book", book);
+                    intent.putExtra("book", book);
                     startActivity(intent);
                 }
 
 //
-//                    String book = mbookEditText.getText().toString();
 //                    if(!(book).equals("")) {
 //                        addToSharedPreferences(book);
 //                    }

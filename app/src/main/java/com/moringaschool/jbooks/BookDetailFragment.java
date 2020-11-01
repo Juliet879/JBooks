@@ -10,6 +10,8 @@ import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.moringaschool.jbooks.models.Item;
@@ -71,11 +73,13 @@ public class BookDetailFragment extends Fragment implements View.OnClickListener
     public void onClick(View v) {
 
         if (v == mSaveBookButton) {
-            DatabaseReference google_bookRef = FirebaseDatabase
+            DatabaseReference reference = FirebaseDatabase
                     .getInstance()
                     .getReference(Constants.FIREBASE_CHILD_BOOKS);
-            google_bookRef.push().setValue(mGoogle_book);
-            Toast.makeText(getContext(), "Saved", Toast.LENGTH_SHORT).show();
+            reference.push().setValue(mGoogle_book);
+            Toast.makeText(getContext(), "Bookmarked!", Toast.LENGTH_SHORT).show();
         }
     }
+
+
 }

@@ -12,6 +12,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.moringaschool.jbooks.Constants;
@@ -35,7 +37,14 @@ public class SavedBookListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_book);
         ButterKnife.bind(this);
 
-        mGoogle_bookReference = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_BOOKS);
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String uid = user.getUid();
+
+        mGoogle_bookReference = FirebaseDatabase
+                .getInstance()
+                .getReference(Constants.FIREBASE_CHILD_BOOKS)
+                .child(uid);
+
         setUpFirebaseAdapter();
     }
 

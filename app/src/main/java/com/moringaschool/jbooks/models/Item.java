@@ -132,4 +132,6 @@ public class Item {
         this.searchInfo = searchInfo;
     }
 
+    public void setPushId(String pushId) {
+    }
 }
