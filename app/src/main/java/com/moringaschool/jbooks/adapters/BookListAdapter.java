@@ -8,11 +8,13 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.moringaschool.jbooks.R;
 import com.moringaschool.jbooks.models.Item;
 import com.moringaschool.jbooks.ui.BookDetailActivity;
+import com.squareup.picasso.Picasso;
 
 import org.parceler.Parcels;
 
@@ -32,7 +34,7 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.BookVi
     }
 
     @Override
-    public BookListAdapter.BookViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public BookListAdapter.BookViewHolder onCreateViewHolder (@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.book_list_item, parent, false);
         BookViewHolder viewHolder = new BookViewHolder(view);
         return viewHolder;
@@ -48,37 +50,40 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.BookVi
         return mGoogle_books.size();
     }
 
-        public class BookViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-            @BindView(R.id.bookImageView) ImageView mBookImageView;
-            @BindView(R.id.titleTextView) TextView mTitleTextView;
-            @BindView(R.id.publisherTextView) TextView mPublisherTextView;
-            @BindView(R.id.selfLinkTextView) TextView mSelfLinkTextView;
 
-            private Context mContext;
 
-            public BookViewHolder(View itemView) {
-                super(itemView);
-                ButterKnife.bind(this, itemView);
-                mContext = itemView.getContext();
-                itemView.setOnClickListener(this);
-            }
 
-            @Override
-            public void onClick(View v) {
-                int itemPosition = getLayoutPosition();
-                Intent intent = new Intent(mContext, BookDetailActivity.class);
-                intent.putExtra("position", itemPosition);
-                intent.putExtra("google_book", Parcels.wrap(mGoogle_books));
-                mContext.startActivity(intent);
-            }
+    public class BookViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+        @BindView(R.id.bookImageView) ImageView mBookImageView;
+        @BindView(R.id.titleTextView) TextView mTitleTextView;
+        @BindView(R.id.publisherTextView) TextView mPublisherTextView;
+        @BindView(R.id.selfLinkTextView) TextView mSelfLinkTextView;
 
-            public void bindGoogle_books(Item google_books) {
-                mTitleTextView.setText(google_books.getVolumeInfo().getTitle());
-                mPublisherTextView.setText(google_books.getVolumeInfo().getPublisher());
-                mSelfLinkTextView.setText(google_books.getSelfLink());
-            }
+        private Context mContext;
 
+        public BookViewHolder(View itemView) {
+            super(itemView);
+            ButterKnife.bind(this, itemView);
+            mContext = itemView.getContext();
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            int itemPosition = getLayoutPosition();
+            Intent intent = new Intent(mContext, BookDetailActivity.class);
+            intent.putExtra("position", itemPosition);
+            intent.putExtra("google_book", Parcels.wrap(mGoogle_books));
+            mContext.startActivity(intent);
+        }
+
+        public void bindGoogle_books(Item google_books) {
+            mTitleTextView.setText(google_books.getVolumeInfo().getTitle());
+            mPublisherTextView.setText(google_books.getVolumeInfo().getPublisher());
+            mSelfLinkTextView.setText(google_books.getSelfLink());
+//            Picasso.get().load(google_books.getVolumeInfo().getImageLinks().getThumbnail()).into(mBookImageView);
 
         }
     }
+}
 

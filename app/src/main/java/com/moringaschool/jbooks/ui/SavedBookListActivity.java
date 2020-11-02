@@ -57,7 +57,7 @@ public class SavedBookListActivity extends AppCompatActivity {
         mFirebaseAdapter = new FirebaseRecyclerAdapter<Item, FireBaseBookViewHolder>(options) {
             @Override
             protected void onBindViewHolder(@NonNull FireBaseBookViewHolder fireBaseBookViewHolder, int i, @NonNull Item google_book) {
-                FireBaseBookViewHolder.bindGoogle_book(google_book);
+//                FireBaseBookViewHolder.bindGoogle_book(google_book);
 
             }
 

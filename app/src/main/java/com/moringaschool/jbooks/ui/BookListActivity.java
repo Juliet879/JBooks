@@ -39,17 +39,15 @@ import retrofit2.Response;
 
 public class BookListActivity extends AppCompatActivity {
     private static final String TAG = BookListActivity.class.getSimpleName();
-////    private String[] books = new String[] {"Bye and Bye", "Living Today","Better with God"};
-////    @BindView(R.id.bookTextView) TextView mBookTextView;
-////    @BindView(R.id.listView) ListView mListView;
-//
-    private SharedPreferences mSharedPreferences;
-    private SharedPreferences.Editor mEditor;
-    private String mRecentAddress;
+//    ////    private String[] books = new String[] {"Bye and Bye", "Living Today","Better with God"};
+//////    @BindView(R.id.bookTextView) TextView mBookTextView;
+//////    @BindView(R.id.listView) ListView mListView;
+////
+//    private SharedPreferences mSharedPreferences;
+//    private SharedPreferences.Editor mEditor;
+//    private String mRecentAddress;
 
     @BindView(R.id.recyclerView) RecyclerView mRecyclerView;
-
-
     @BindView(R.id.errorTextView) TextView mErrorTextView;
     @BindView(R.id.progressBar) ProgressBar mProgressBar;
 
@@ -74,171 +72,154 @@ public class BookListActivity extends AppCompatActivity {
 //        });
 //
 
-        Intent intent = getIntent();
+        final Intent intent = getIntent();
         String book = intent.getStringExtra("book");
         intent.putExtra("book", book);
 
-        getGoogle_book(book);
-        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        mRecentAddress = mSharedPreferences.getString(Constants.PREFERENCES_BOOK_KEY, null);
+//        getGoogle_book(book);
+//        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+//        mRecentAddress = mSharedPreferences.getString(Constants.PREFERENCES_BOOK_KEY, null);
+//
+//        if (mRecentAddress != null) {
+//            getGoogle_book(mRecentAddress);
+//        }
 
-        if (mRecentAddress != null) {
-            getGoogle_book(mRecentAddress);
+
+
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        MenuInflater inflater = getMenuInflater();
+//        inflater.inflate(R.menu.menu_search, menu);
+//        ButterKnife.bind(this);
+//
+//        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+//        mEditor = mSharedPreferences.edit();
+//
+//
+//        final MenuItem menuItem = menu.findItem(R.id.action_search);
+//        final SearchView searchView = (SearchView) MenuItemCompat.getActionView(menuItem);
+//
+//        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+//
+//            @Override
+//            public boolean onQueryTextSubmit(String query) {
+//                addToSharedPreferences(query);
+//                getGoogle_book(query);
+//                return false;
+//            }
+//
+//            @Override
+//            public boolean onQueryTextChange(String newText) {
+//                return false;
+//            }
+//        });
+//
+//        return true;
+//    }
+//
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        return super.onOptionsItemSelected(item);
+//    }
+//
+//
+//    private void addToSharedPreferences(String book) {
+//        mEditor.putString(Constants.PREFERENCES_BOOK_KEY, book).apply();
+//    }
+
+//    private void getGoogle_book(String book) {
+//        final GoogleClient googleClient = new GoogleClient();
+//        googleClient.findGoogle_book(book, new Callback() {
+
+    //
+//            @Override
+//            public void onFailure(Call call, Throwable t) {
+//                t.printStackTrace();
+//
+//            }
+//
+//            @Override
+//            public void onResponse(Call call, Response response) {
+//                googleClient.processResults(response);
+//                BookListActivity.this.runOnUiThread(new Runnable() {
+//
+//                    @Override
+//                    public void run() {
+//                        mAdapter = new BookListAdapter(getApplicationContext(), google_book);
+//                        mRecyclerView.setAdapter(mAdapter);
+//                        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(BookListActivity.this);
+//                        mRecyclerView.setLayoutManager(layoutManager);
+//                        mRecyclerView.setHasFixedSize(true);
+//                    }
+//                });
+//            }
+//
+//
+//        });
+//    }
+    GoogleApi client = GoogleClient.getClient();
+
+    Call<GoogleBooksSearchResponse> Call = client.getBooks(book, "AIzaSyCgkz3A0W4a-AMczr9uiRCVyVjiFBbqvOc");
+
+    Call.enqueue(new Callback<GoogleBooksSearchResponse>()
+
+    {
+
+        @Override
+        public void onResponse
+        (Call < GoogleBooksSearchResponse > call, Response < GoogleBooksSearchResponse > response){
+        if (response.isSuccessful()) {
+            hideProgressBar();
+            google_book = response.body().getItems();
+            mAdapter = new BookListAdapter(BookListActivity.this, google_book);
+            mRecyclerView.setAdapter(mAdapter);
+            RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(BookListActivity.this);
+            mRecyclerView.setLayoutManager(layoutManager);
+            mRecyclerView.setHasFixedSize(true);
+
+            showGoogle_book();
+
+        } else {
+            showUnsuccessfulMessage();
         }
     }
 
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_search, menu);
-        ButterKnife.bind(this);
+        @Override
+        public void onFailure (Call < GoogleBooksSearchResponse > call, Throwable t){
+        hideProgressBar();
+        showFailureMessage();
+    }
+    });
+}
 
-        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        mEditor = mSharedPreferences.edit();
+//        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+//        mRecentAddress = mSharedPreferences.getString(Constants.PREFERENCES_BOOK_KEY, null);
+//        if (mRecentAddress != null) {
+//            getGoogle_books(mRecentAddress);
+//        }
+////        Log.d("Shared Pref Location", mRecentAddress);
 
 
 
-        final MenuItem menuItem = menu.findItem(R.id.action_search);
-        final SearchView searchView = (SearchView) MenuItemCompat.getActionView(menuItem);
-
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                addToSharedPreferences(query);
-                getGoogle_book(query);
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                return false;
-            }
-        });
-
-        return true;
+    private void showFailureMessage() {
+        mErrorTextView.setText("Something went wrong. Please check your Internet connection and try again later");
+        mErrorTextView.setVisibility(View.VISIBLE);
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        return super.onOptionsItemSelected(item);
+    private void showUnsuccessfulMessage() {
+        mErrorTextView.setText("Something went wrong. Please try again later");
+        mErrorTextView.setVisibility(View.VISIBLE);
     }
 
 
-    private void addToSharedPreferences(String book) {
-        mEditor.putString(Constants.PREFERENCES_BOOK_KEY, book).apply();
+    private void showGoogle_book() {
+        mRecyclerView.setVisibility(View.VISIBLE);
+
     }
 
-    private void getGoogle_book(String book) {
-        final GoogleClient googleClient = new GoogleClient();
-        googleClient.findGoogle_book(book, new Callback() {
-
-
-            @Override
-            public void onFailure(Call call, Throwable t) {
-                t.printStackTrace();
-
-            }
-
-            @Override
-            public void onResponse(Call call, Response response) {
-                googleClient.processResults(response);
-                BookListActivity.this.runOnUiThread(new Runnable() {
-
-                    @Override
-                    public void run() {
-                        mAdapter = new BookListAdapter(getApplicationContext(), google_book);
-                        mRecyclerView.setAdapter(mAdapter);
-                        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(BookListActivity.this);
-                        mRecyclerView.setLayoutManager(layoutManager);
-                        mRecyclerView.setHasFixedSize(true);
-                    }
-                });
-            }
-
-
-        });
+    private void hideProgressBar() {
+        mProgressBar.setVisibility(View.GONE);
     }
-//        GoogleApi client = GoogleClient.getClient();
-//
-//        Call<GoogleBooksSearchResponse> Call = client.getBooks(book, "AIzaSyCgkz3A0W4a-AMczr9uiRCVyVjiFBbqvOc");
-//
-//        Call.enqueue(new Callback<GoogleBooksSearchResponse>() {
-//
-//            @Override
-//            public void onResponse(Call<GoogleBooksSearchResponse> call, Response<GoogleBooksSearchResponse> response) {
-//
-//                hideProgressBar();
-//
-//                if (response.isSuccessful()) {
-//                    google_book = response.body().getItems();
-//                    mAdapter = new BookListAdapter(BookListActivity.this, google_book);
-//                    mRecyclerView.setAdapter(mAdapter);
-//                    RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(BookListActivity.this);
-//                    mRecyclerView.setLayoutManager(layoutManager);
-//                    mRecyclerView.setHasFixedSize(true);
-////                if (response.isSuccessful()) {
-////                    List<Item> booksList = response.body().getItems();
-////                    String[] google_books = new String[booksList.size()];
-////
-////                    for (int i = 0; i < google_books.length; i++){
-////                        google_books[i] = booksList.get(i).getVolumeInfo().getTitle();
-////                    }
-////
-//////
-////
-////                    ArrayAdapter adapter = new BooksArrayAdapter(BookActivity.this, android.R.layout.simple_list_item_1, books);
-////                    mListView.setAdapter(adapter);
-//                    showBooks();
-//
-//                } else {
-//                    showUnsuccessfulMessage();
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<GoogleBooksSearchResponse> call, Throwable t) {
-//                hideProgressBar();
-//                showFailureMessage();
-//            }
-//
-//        });
-//
-////        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-////        mRecentAddress = mSharedPreferences.getString(Constants.PREFERENCES_BOOK_KEY, null);
-////        if (mRecentAddress != null) {
-////            getGoogle_books(mRecentAddress);
-////        }
-//////        Log.d("Shared Pref Location", mRecentAddress);
-//
-//
-//
-//    }
-//
-//    private void getGoogle_books(String mRecentAddress) {
-//    }
-//
-//
-//    private void showFailureMessage() {
-//        mErrorTextView.setText("Something went wrong. Please check your Internet connection and try again later");
-//        mErrorTextView.setVisibility(View.VISIBLE);
-//    }
-//
-//    private void showUnsuccessfulMessage() {
-//        mErrorTextView.setText("Something went wrong. Please try again later");
-//        mErrorTextView.setVisibility(View.VISIBLE);
-//    }
-//
-//    private void showBooks() {
-//        mRecyclerView.setVisibility(View.VISIBLE);
-//
-//    }
-//
-//    private void hideProgressBar() {
-//        mProgressBar.setVisibility(View.GONE);
-//    }
-
-
 
 }
