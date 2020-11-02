@@ -138,8 +138,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
             }
 
-//            options = new FirebaseRecyclerOptions.Builder<model>().setQuery(ref.model.class).build();
-//            adapters = new FirebaseRecyclerAdapter<model,MyViewHolder>(options)
 
 
     @Override

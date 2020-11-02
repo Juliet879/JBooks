@@ -25,6 +25,68 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class SavedBookListActivity extends AppCompatActivity {
+//    private DatabaseReference mGoogle_bookReference;
+//    private FirebaseRecyclerAdapter<Item, FireBaseBookViewHolder> mFirebaseAdapter;
+//
+//    @BindView(R.id.recyclerView) RecyclerView mRecyclerView;
+//
+//
+//    @Override
+//    protected void onCreate(Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//        setContentView(R.layout.activity_book);
+//        ButterKnife.bind(this);
+//
+//        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+//        String uid = user.getUid();
+//
+//        mGoogle_bookReference = FirebaseDatabase
+//                .getInstance()
+//                .getReference(Constants.FIREBASE_CHILD_BOOKS)
+//                .child(uid);
+//
+//        setUpFirebaseAdapter();
+//    }
+//
+//    private void setUpFirebaseAdapter(){
+//        FirebaseRecyclerOptions<Item> options =
+//                new FirebaseRecyclerOptions.Builder<Item>()
+//                        .setQuery(mGoogle_bookReference, Item.class)
+//                        .build();
+//
+//        mFirebaseAdapter = new FirebaseRecyclerAdapter<Item, FireBaseBookViewHolder>(options) {
+//            @Override
+//            protected void onBindViewHolder(@NonNull FireBaseBookViewHolder fireBaseBookViewHolder, int i, @NonNull Item google_book) {
+////                FireBaseBookViewHolder.bindGoogle_book(google_book);
+//
+//            }
+//
+//            @NonNull
+//            @Override
+//            public FireBaseBookViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+//                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.book_list_item, parent, false);
+//                return new FireBaseBookViewHolder(view);
+//            }
+//        };
+//
+//        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+//        mRecyclerView.setAdapter(mFirebaseAdapter);
+//    }
+//
+//    @Override
+//    protected void onStart() {
+//        super.onStart();
+//        mFirebaseAdapter.startListening();
+//    }
+//
+//    @Override
+//    protected void onStop() {
+//        super.onStop();
+//        if(mFirebaseAdapter!= null) {
+//            mFirebaseAdapter.stopListening();
+//        }
+//    }
+
     private DatabaseReference mGoogle_bookReference;
     private FirebaseRecyclerAdapter<Item, FireBaseBookViewHolder> mFirebaseAdapter;
 
@@ -37,14 +99,7 @@ public class SavedBookListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_book);
         ButterKnife.bind(this);
 
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        String uid = user.getUid();
-
-        mGoogle_bookReference = FirebaseDatabase
-                .getInstance()
-                .getReference(Constants.FIREBASE_CHILD_BOOKS)
-                .child(uid);
-
+        mGoogle_bookReference = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_BOOKS);
         setUpFirebaseAdapter();
     }
 
@@ -57,9 +112,10 @@ public class SavedBookListActivity extends AppCompatActivity {
         mFirebaseAdapter = new FirebaseRecyclerAdapter<Item, FireBaseBookViewHolder>(options) {
             @Override
             protected void onBindViewHolder(@NonNull FireBaseBookViewHolder fireBaseBookViewHolder, int i, @NonNull Item google_book) {
-//                FireBaseBookViewHolder.bindGoogle_book(google_book);
+                fireBaseBookViewHolder.bindGoogle_book(google_book);
 
             }
+
 
             @NonNull
             @Override
