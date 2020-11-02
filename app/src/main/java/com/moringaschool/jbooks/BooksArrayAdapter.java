@@ -17,7 +17,7 @@ public class BooksArrayAdapter  extends ArrayAdapter {
     @Override
     public Object getItem(int position) {
         String books = mBooks[position];
-        return String.format("%s \nServes great:%s", books);
+        return String.format("%s ", books);
     }
 
     @Override

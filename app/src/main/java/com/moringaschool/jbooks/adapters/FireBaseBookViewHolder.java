@@ -3,6 +3,7 @@ package com.moringaschool.jbooks.adapters;
 import android.content.Context;
 import android.content.Intent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -25,29 +26,34 @@ import org.parceler.Parcels;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
+
 public class FireBaseBookViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-    static View mView;
+    @BindView(R.id.saveBookButton) Button mSaveBookButton;
+
     Context mContext;
+    public ImageView BookImageView;
+    public TextView TitleTextView;
+    public TextView PublisherTextView;
+    public TextView SelfLinkTextView;
+
+
 
     public FireBaseBookViewHolder(View itemView) {
         super(itemView);
-        mView = itemView;
         mContext = itemView.getContext();
         itemView.setOnClickListener(this);
-    }
 
 
-    public static void bindGoogle_book(Item google_boook) {
-        ImageView bookImageView = (ImageView) mView.findViewById(R.id.bookImageView);
-        TextView titleTextView = (TextView) mView.findViewById(R.id.titleTextView);
-        TextView publisherTextView = (TextView) mView.findViewById(R.id.publisherTextView);
-        TextView selfLinkTextView = (TextView) mView.findViewById(R.id.selfLinkTextView);
+
+        BookImageView = itemView.findViewById(R.id.BookImageView);
+        TitleTextView = itemView.findViewById(R.id.TitleTextView);
+        PublisherTextView = itemView.findViewById(R.id.PublisherTextView);
+        SelfLinkTextView = itemView.findViewById(R.id.SelfLinkTextView);
 
 
-        titleTextView.setText(google_boook.getVolumeInfo().getTitle());
-        publisherTextView.setText(google_boook.getVolumeInfo().getPublisher());
-        selfLinkTextView.setText(google_boook.getSelfLink());
+
     }
 
     @Override

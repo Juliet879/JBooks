@@ -18,60 +18,48 @@
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/background" />
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="209dp"
-        android:layout_height="32dp"
-        android:layout_marginTop="61dp"
-        android:text="HOT LIST OF THE DAY"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.376"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.134" />
+
 
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="102dp"
         android:layout_height="127dp"
         android:layout_marginTop="20dp"
-        app:layout_constraintEnd_toStartOf="@+id/imageView3"
-        app:layout_constraintHorizontal_bias="0.054"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        app:layout_constraintBottom_toTopOf="@+id/imageView5"
+        app:layout_constraintTop_toBottomOf="@+id/bookEditText"
         app:srcCompat="@drawable/image1" />
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="94dp"
-        android:layout_height="128dp"
-        app:layout_constraintBottom_toTopOf="@+id/imageView6"
+        android:layout_width="102dp"
+        android:layout_height="127dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/imageView6"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:layout_constraintVertical_bias="0.318"
+        app:layout_constraintTop_toBottomOf="@+id/bookEditText"
         app:srcCompat="@drawable/image3" />
+
 
     <ImageView
         android:id="@+id/imageView4"
-        android:layout_width="95dp"
+        android:layout_width="102dp"
         android:layout_height="129dp"
-        android:layout_marginStart="34dp"
         android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintBottom_toTopOf="@+id/imageView7"
         app:layout_constraintStart_toEndOf="@+id/imageView3"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        app:layout_constraintTop_toBottomOf="@+id/bookEditText"
         app:srcCompat="@drawable/image2" />
 
     <ImageView
         android:id="@+id/imageView5"
-        android:layout_width="98dp"
-        android:layout_height="131dp"
+        android:layout_width="102dp"
+        android:layout_height="128dp"
         android:layout_marginStart="4dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="32dp"
+       app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2"
         app:layout_constraintVertical_bias="0.915"
@@ -79,18 +67,20 @@
 
     <ImageView
         android:id="@+id/imageView6"
-        android:layout_width="88dp"
+        android:layout_width="102dp"
         android:layout_height="128dp"
-        android:layout_marginStart="60dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="32dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.731"
+        app:layout_constraintTop_toBottomOf="@+id/imageView3"
         app:layout_constraintStart_toEndOf="@+id/imageView5"
         app:srcCompat="@drawable/image5" />
 
     <ImageView
         android:id="@+id/imageView7"
-        android:layout_width="98dp"
-        android:layout_height="125dp"
+        android:layout_width="102dp"
+        android:layout_height="128dp"
         android:layout_marginTop="32dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -104,32 +94,19 @@
         android:id="@+id/getStartedButton"
         android:layout_width="138dp"
         android:layout_height="33dp"
+        android:layout_above="@+id/saveBookButton"
         android:background="#A1AA7676"
         android:text="Get Started"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="14sp"
         android:textStyle="bold"
         android:visibility="visible"
-        android:layout_above="@+id/saveBookButton"
         app:layout_constraintBottom_toBottomOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.456"
+        app:layout_constraintHorizontal_bias="0.098"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.94" />
-
-    <Button
-        android:id="@+id/saveBookButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentBottom="true"
-        android:background="@color/colorAccent"
-        android:text="My Saved Book"
-        android:textColor="@color/colorTextIcons"
-        android:visibility="visible"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
-        tools:layout_editor_absoluteX="0dp" />
+        app:layout_constraintVertical_bias="0.939" />
 
     <EditText
         android:id="@+id/bookEditText"
@@ -142,18 +119,32 @@
         android:textColor="#302F2B"
         android:textSize="14sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/textView2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.32"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
-      <androidx.recyclerview.widget.RecyclerView
-          android:layout_width="match_parent"
-          android:layout_height="match_parent"
-          android:id="@+id/recyclerView"/>
+<!--    <androidx.recyclerview.widget.RecyclerView-->
+<!--        android:id="@+id/recyclerView"-->
+<!--        class="android.support.v7.widget.RecyclerView"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        tools:layout_editor_absoluteX="-16dp"-->
+<!--        tools:layout_editor_absoluteY="0dp" />-->
 
+    <Button
+        android:id="@+id/saveBookButton"
+        android:layout_width="138dp"
+        android:layout_height="33dp"
+        android:background="#A1AA7676"
+        android:text="Saved Books"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.673"
+        app:layout_constraintStart_toEndOf="@+id/getStartedButton"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.937"
+        tools:visibility="visible" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

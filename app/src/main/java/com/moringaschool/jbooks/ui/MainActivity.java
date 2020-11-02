@@ -4,10 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -17,12 +14,6 @@ import android.widget.EditText;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-import com.moringaschool.jbooks.Constants;
 import com.moringaschool.jbooks.R;
 
 import butterknife.BindView;
@@ -42,6 +33,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
+
+//    private FirebaseRecyclerOptions<model> options;
+//    private FirebaseRecyclerAdapter<model, MyViewHolder> adapter;
+//
+//    private RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,10 +88,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //        mEditor = mSharedPreferences.edit();
 //
 
-        mGetStartedButton.setOnClickListener(this);
-        mSavedBookButton.setOnClickListener(this);
-    }
+//        recyclerView = findViewById(R.id.recyclerView);
+//        recyclerView.setHasFixedSize(true);
+//        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+        mbookEditText = (EditText) findViewById(R.id.bookEditText);
+        mGetStartedButton.setOnClickListener(this) ;
+
+        mSavedBookButton.setOnClickListener(this);
+//        options = new FirebaseRecyclerOptions.Builder<model>().setQuery(ref.model.class).build();
+//        adapters = new FirebaseRecyclerAdapter<model,MyViewHolder>(options)
+    }
 
     @Override
     public void onStart() {
@@ -110,7 +113,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             mAuth.removeAuthStateListener(mAuthListener);
         }
     }
-            @Override
+
+
+
+
+        @Override
             public void onClick(View v) {
                 if (v == mGetStartedButton) {
                     String book = mbookEditText.getText().toString();
@@ -130,6 +137,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 }
             }
+
+//            options = new FirebaseRecyclerOptions.Builder<model>().setQuery(ref.model.class).build();
+//            adapters = new FirebaseRecyclerAdapter<model,MyViewHolder>(options)
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -168,4 +179,4 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //
 //    private void addToSharedPreferences(String book) {
 //        mEditor.putString(Constants.PREFERENCES_BOOK_KEY, book).apply();    }
-}
+ }

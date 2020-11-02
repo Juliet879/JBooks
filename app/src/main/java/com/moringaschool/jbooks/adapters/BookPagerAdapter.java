@@ -1,5 +1,6 @@
 package com.moringaschool.jbooks.adapters;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
@@ -17,6 +18,7 @@ public class BookPagerAdapter extends FragmentPagerAdapter {
         mGoogle_book = google_book;
     }
 
+    @NonNull
     @Override
     public Fragment getItem(int position) {
         return BookDetailFragment.newInstance(mGoogle_book.get(position));
