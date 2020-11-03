@@ -5,7 +5,9 @@ import androidx.core.view.MenuItemCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.AlertDialog;
 import android.app.ListActivity;
+import android.app.MediaRouteButton;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -18,6 +20,9 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.SearchView;
 import android.widget.TextView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 
 import com.moringaschool.jbooks.Constants;
 import com.moringaschool.jbooks.adapters.BookListAdapter;
@@ -53,6 +58,7 @@ public class BookListActivity extends AppCompatActivity {
 
     private BookListAdapter mAdapter;
     public List<Item> google_book;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -157,50 +163,44 @@ public class BookListActivity extends AppCompatActivity {
 //
 //        });
 //    }
-    GoogleApi client = GoogleClient.getClient();
+//        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+//        mRecentAddress = mSharedPreferences.getString(Constants.PREFERENCES_BOOK_KEY, null);
+//        if(mRecentAddress != null){
+//            getGoogle_books(mRecentAddress);
+//        }
+//    }
+
+
+        GoogleApi client = GoogleClient.getClient();
 
     Call<GoogleBooksSearchResponse> Call = client.getBooks(book, "AIzaSyCgkz3A0W4a-AMczr9uiRCVyVjiFBbqvOc");
 
-    Call.enqueue(new Callback<GoogleBooksSearchResponse>()
+    Call.enqueue(new Callback<GoogleBooksSearchResponse>() {
 
-    {
 
         @Override
-        public void onResponse
-        (Call < GoogleBooksSearchResponse > call, Response < GoogleBooksSearchResponse > response){
-        if (response.isSuccessful()) {
-            hideProgressBar();
-            google_book = response.body().getItems();
-            mAdapter = new BookListAdapter(BookListActivity.this, google_book);
-            mRecyclerView.setAdapter(mAdapter);
-            RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(BookListActivity.this);
-            mRecyclerView.setLayoutManager(layoutManager);
-            mRecyclerView.setHasFixedSize(true);
-
-            showGoogle_book();
-
-        } else {
-            showUnsuccessfulMessage();
+    public void onResponse(Call<GoogleBooksSearchResponse> call, Response<GoogleBooksSearchResponse> response) {
+            if (response.isSuccessful()) {
+                hideProgressBar();
+                google_book = response.body().getItems();
+                mAdapter = new BookListAdapter(BookListActivity.this, google_book);
+                mRecyclerView.setAdapter(mAdapter);
+                RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(BookListActivity.this);
+                mRecyclerView.setLayoutManager(layoutManager);
+                mRecyclerView.setHasFixedSize(true);
+                showGoogle_book();
+            } else {
+                showUnsuccessfulMessage();
+            }
         }
-    }
-
-
         @Override
-        public void onFailure (Call < GoogleBooksSearchResponse > call, Throwable t){
-        hideProgressBar();
-        showFailureMessage();
-    }
+        public void onFailure(retrofit2.Call<GoogleBooksSearchResponse> call, Throwable t) {
+            Log.e(TAG, "onFailure:", t);
+            hideProgressBar();
+            showFailureMessage();
+        }
     });
-}
-
-//        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-//        mRecentAddress = mSharedPreferences.getString(Constants.PREFERENCES_BOOK_KEY, null);
-//        if (mRecentAddress != null) {
-//            getGoogle_books(mRecentAddress);
-//        }
-////        Log.d("Shared Pref Location", mRecentAddress);
-
-
+    }
 
     private void showFailureMessage() {
         mErrorTextView.setText("Something went wrong. Please check your Internet connection and try again later");
@@ -212,14 +212,11 @@ public class BookListActivity extends AppCompatActivity {
         mErrorTextView.setVisibility(View.VISIBLE);
     }
 
-
     private void showGoogle_book() {
         mRecyclerView.setVisibility(View.VISIBLE);
-
     }
 
     private void hideProgressBar() {
         mProgressBar.setVisibility(View.GONE);
     }
-
 }

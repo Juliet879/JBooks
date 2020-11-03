@@ -1,6 +1,10 @@
 
 package com.moringaschool.jbooks.network;
 
+import com.moringaschool.jbooks.models.Item;
+
+import java.util.ArrayList;
+
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Callback;
@@ -46,7 +50,8 @@ public class GoogleClient {
         return retrofit.create(GoogleApi.class);
     }
 
-    public void processResults(Response response) {
+    public ArrayList<Item> processResults(Response response) {
+        return null;
     }
 
     public void findGoogle_book(String book, Callback callback) {

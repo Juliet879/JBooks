@@ -6,7 +6,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.moringaschool.jbooks.models.Item;
-import com.moringaschool.jbooks.BookDetailFragment;
+import com.moringaschool.jbooks.ui.BookDetailFragment;
 
 import java.util.List;
 

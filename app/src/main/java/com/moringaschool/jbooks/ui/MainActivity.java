@@ -20,7 +20,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
-
+    private static final String TAG = MainActivity.class.getSimpleName();
 //    private SharedPreferences mSharedPreferences;
 //    private SharedPreferences.Editor mEditor;
 //
@@ -100,23 +100,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //        adapters = new FirebaseRecyclerAdapter<model,MyViewHolder>(options)
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        mAuth.addAuthStateListener(mAuthListener);
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        if (mAuthListener != null) {
-            mAuth.removeAuthStateListener(mAuthListener);
-        }
-    }
-
-
-
-
         @Override
             public void onClick(View v) {
                 if (v == mGetStartedButton) {
@@ -165,6 +148,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         finish();
     }
 
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        mAuth.addAuthStateListener(mAuthListener);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (mAuthListener != null) {
+            mAuth.removeAuthStateListener(mAuthListener);
+        }
+    }
+    @Override
+    public void onResume(){
+        super.onResume();
+        mAuth.addAuthStateListener(mAuthListener);
+    }
 //    public void saveBookToFirebase(String book) {
 //        mSearchedBookReference.push().setValue(book);
 //    }

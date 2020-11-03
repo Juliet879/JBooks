@@ -3,6 +3,8 @@ package com.moringaschool.jbooks.util;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.moringaschool.jbooks.adapters.FirebaseBookListAdapter;
+
 public class SimpleItemTouchHelperCallback extends ItemTouchHelper.Callback {
     private final ItemTouchHelperAdapter mAdapter;
 
@@ -10,7 +12,7 @@ public class SimpleItemTouchHelperCallback extends ItemTouchHelper.Callback {
     //  FirebaseBookListAdapter, the ItemTouchHelperAdapter instance will pass the gesture event back to the
     //  Firebase adapter where we will define what occurs when an item is moved or dismissed.
 
-    public SimpleItemTouchHelperCallback(ItemTouchHelperAdapter adapter) {
+    public SimpleItemTouchHelperCallback(FirebaseBookListAdapter adapter) {
         mAdapter = adapter;
     }
 
