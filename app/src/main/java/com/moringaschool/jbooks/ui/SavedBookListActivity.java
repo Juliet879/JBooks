@@ -120,7 +120,7 @@ public class SavedBookListActivity extends AppCompatActivity {
             @NonNull
             @Override
             public FireBaseBookViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.book_list_item, parent, false);
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.book_list_item_drag, parent, false);
                 return new FireBaseBookViewHolder(view);
             }
         };
