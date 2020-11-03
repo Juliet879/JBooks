@@ -24,18 +24,12 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class BookDetailFragment extends Fragment implements View.OnClickListener {
-    @BindView(R.id.bookImageView)
-    ImageView mImageLabel;
-    @BindView(R.id.titleTextView)
-    TextView mTitleLabel;
-    @BindView(R.id.publisherTextView)
-    TextView mPublisherLabel;
-    @BindView(R.id.selfLinkTextView)
-    TextView mSelfLinkLabel;
-    @BindView(R.id.phoneTextView)
-    TextView mPhoneLabel;
-    @BindView(R.id.saveBookButton)
-    TextView mSaveBookButton;
+    @BindView(R.id.bookImageView) ImageView mImageLabel;
+    @BindView(R.id.titleTextView) TextView mTitleLabel;
+    @BindView(R.id.publisherTextView) TextView mPublisherLabel;
+    @BindView(R.id.selfLinkTextView) TextView mSelfLinkLabel;
+    @BindView(R.id.phoneTextView) TextView mPhoneLabel;
+    @BindView(R.id.saveBookButton) TextView mSaveBookButton;
 
     private Item mGoogle_book;
 
@@ -54,7 +48,7 @@ public class BookDetailFragment extends Fragment implements View.OnClickListener
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mGoogle_book = Parcels.unwrap(getArguments().getParcelable("restaurant"));
+        mGoogle_book = Parcels.unwrap(getArguments().getParcelable("google_book"));
     }
 
     @Override
@@ -62,11 +56,10 @@ public class BookDetailFragment extends Fragment implements View.OnClickListener
         View view = inflater.inflate(R.layout.fragment_book_detail, container, false);
         ButterKnife.bind(this, view);
 
-
-//        mTitleLabel.setText(mGoogle_book.getVolumeInfo().getTitle());
-//        mPublisherLabel.setText(mGoogle_book.getVolumeInfo().getPublisher());
-//        mSelfLinkLabel.setText(mGoogle_book.getSelfLink());
-//        mPhoneLabel.setText(mGoogle_book.getAccessInfo().getAccessViewStatus());
+        mTitleLabel.setText(mGoogle_book.getVolumeInfo().getTitle());
+        mPublisherLabel.setText(mGoogle_book.getVolumeInfo().getPublisher());
+        mSelfLinkLabel.setText(mGoogle_book.getSelfLink());
+        mPhoneLabel.setText(mGoogle_book.getAccessInfo().getAccessViewStatus());
 //          mPhoneLabel.setOnClickListener(this);
         mSaveBookButton.setOnClickListener(this);
 
@@ -79,6 +72,11 @@ public class BookDetailFragment extends Fragment implements View.OnClickListener
     public void onClick(View v) {
 
         if (v == mSaveBookButton) {
+//            DatabaseReference booksRef = FirebaseDatabase
+//                    .getInstance()
+//                    .getReference(Constants.FIREBASE_CHILD_BOOKS);
+//            booksRef.push().setValue(mGoogle_book);
+//            Toast.makeText(getContext(), "saved clearly", Toast.LENGTH_SHORT).show();
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
             String uid = user.getUid();
             DatabaseReference google_bookRef = FirebaseDatabase
@@ -87,7 +85,7 @@ public class BookDetailFragment extends Fragment implements View.OnClickListener
                     .child(uid);
             DatabaseReference pushRef = google_bookRef.push();
             String pushId = pushRef.getKey();
-//            mGoogle_book.setPushId(pushId);
+            mGoogle_book.setPushId(pushId);
             pushRef.setValue(mGoogle_book);
             Toast.makeText(getContext(), "Saved", Toast.LENGTH_SHORT).show();
         }

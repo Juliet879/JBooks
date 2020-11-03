@@ -65,42 +65,43 @@
             android:layout_height="match_parent">
 
             <LinearLayout
-                android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
                 android:layout_above="@+id/saveBookButton"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:background="#050505"
+                android:orientation="vertical"
                 android:paddingLeft="30dp"
                 android:paddingTop="20dp"
                 android:paddingRight="30dp">
 
 
-
                 <TextView
+                    android:id="@+id/phoneTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="(503) 223-1282"
-                    android:id="@+id/phoneTextView"
+                    android:layout_marginBottom="10dp"
                     android:drawableLeft="@drawable/ic_call_white_18dp"
                     android:drawablePadding="4dp"
+                    android:gravity="center"
+                    android:text="(503) 223-1282"
                     android:textColor="@color/colorTextIcons"
                     android:textSize="15sp"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="10dp"
-                    android:gravity="center"/>
+                    android:textStyle="bold" />
 
 
             </LinearLayout>
 
             <Button
+                android:id="@+id/saveBookButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Save Book"
-                android:id="@+id/saveBookButton"
                 android:layout_alignParentBottom="true"
                 android:background="@color/colorAccent"
+                android:backgroundTint="#FF5722"
+                android:text="Save Book"
                 android:textColor="@color/colorTextIcons"
                 android:textSize="15sp" />
         </RelativeLayout>

@@ -37,8 +37,8 @@ public class FireBaseBookViewHolder extends RecyclerView.ViewHolder implements V
 
     public FireBaseBookViewHolder(View itemView) {
         super(itemView);
+        mView = itemView;
         mContext = itemView.getContext();
-        itemView.setOnClickListener(this);
         itemView.setOnClickListener(this);
     }
 
@@ -76,7 +76,6 @@ public class FireBaseBookViewHolder extends RecyclerView.ViewHolder implements V
                 }
 
                 int itemPosition = getLayoutPosition();
-
                 Intent intent = new Intent(mContext, BookDetailActivity.class);
                 intent.putExtra("position", itemPosition + "");
                 intent.putExtra("google_boook", Parcels.wrap(google_boook));
@@ -85,7 +84,7 @@ public class FireBaseBookViewHolder extends RecyclerView.ViewHolder implements V
             }
 
             @Override
-            public void onCancelled(DatabaseError databaseError) {
+            public void onCancelled(@NonNull DatabaseError databaseError) {
             }
         });
     }
