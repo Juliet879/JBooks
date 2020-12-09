@@ -3,6 +3,8 @@
 JBooks is a mobile application that provides platform for an online readers to search foe different kinds of books on google and read them virtually.
 <img src="Screenshot1.jpg">
 
+<img src="Screenshot1.png">
+
 # Technologies Used
 - Java
 - XML

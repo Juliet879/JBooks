@@ -1,16 +1,17 @@
 
 package com.moringaschool.jbooks.network;
 
-import java.io.IOException;
+import com.moringaschool.jbooks.models.Item;
 
-import okhttp3.Interceptor;
+import java.util.ArrayList;
+
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
-import okhttp3.Request;
-import okhttp3.Response;
+import retrofit2.Callback;
+import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import static com.moringaschool.jbooks.Constants.GOOGLE_API_KEY;
+
 import static com.moringaschool.jbooks.Constants.GOOGLE_BASE_URL;
 
 
@@ -47,5 +48,12 @@ public class GoogleClient {
         }
 
         return retrofit.create(GoogleApi.class);
+    }
+
+    public ArrayList<Item> processResults(Response response) {
+        return null;
+    }
+
+    public void findGoogle_book(String book, Callback callback) {
     }
 }
